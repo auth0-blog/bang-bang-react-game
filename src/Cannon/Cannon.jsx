@@ -11,13 +11,8 @@ const Cannon = props => (
 );
 
 Cannon.propTypes = {
-  xAxis: PropTypes.number,
-  yAxis: PropTypes.number,
-};
-
-Cannon.defaultProps = {
-  xAxis: 300,
-  yAxis: 300,
+  xAxis: PropTypes.number.isRequired,
+  yAxis: PropTypes.number.isRequired,
 };
 
 export default Cannon;
