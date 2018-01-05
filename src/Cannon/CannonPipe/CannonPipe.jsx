@@ -5,8 +5,7 @@ const CannonPipe = (props) => {
   const cannonPipeStyle = {
     fill: '#595959',
   };
-  const rotation = 0;
-  const transform = `rotate(${rotation}, ${props.xAxis}, ${props.yAxis})`;
+  const transform = `rotate(${props.rotation}, ${props.xAxis}, ${props.yAxis})`;
   return (
     <g id="cannon" transform={transform}>
       <ellipse
@@ -30,6 +29,7 @@ const CannonPipe = (props) => {
 CannonPipe.propTypes = {
   xAxis: PropTypes.number.isRequired,
   yAxis: PropTypes.number.isRequired,
+  rotation: PropTypes.number.isRequired,
 };
 
 export default CannonPipe;
