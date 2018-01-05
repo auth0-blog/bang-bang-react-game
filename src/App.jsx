@@ -20,7 +20,7 @@ const App = () => {
     <Canvas>
       <Sky />
       <Ground />
-      <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={45} />
+      <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={70} />
       <Cannon xAxis={secondCannonAxis.x} yAxis={secondCannonAxis.y} rotation={-45} />
     </Canvas>
   );
