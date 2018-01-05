@@ -51,14 +51,8 @@ const CannonBase = (props) => {
 };
 
 CannonBase.propTypes = {
-  xAxis: PropTypes.number,
-  yAxis: PropTypes.number,
+  xAxis: PropTypes.number.isRequired,
+  yAxis: PropTypes.number.isRequired,
 };
-
-CannonBase.defaultProps = {
-  xAxis: 300,
-  yAxis: 300,
-};
-
 
 export default CannonBase;
