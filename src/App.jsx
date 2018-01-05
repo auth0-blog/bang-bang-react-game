@@ -10,13 +10,17 @@ const App = () => {
     stroke: 'rgb(255, 0, 0)',
     strokeWidth: '2',
   };
+  const axis = {
+    x: 300,
+    y: 650,
+  };
   return (
     <Canvas>
       <Sky />
       <Ground />
-      <Cannon />
-      <line x1="340" y1="0" x2="340" y2="800" style={lineStyle} />
-      <line x1="0" y1="660" x2="1600" y2="660" style={lineStyle} />
+      <Cannon xAxis={300} yAxis={650} />
+      <line x1={axis.x} y1="0" x2={axis.x} y2="800" style={lineStyle} />
+      <line x1="0" y1={axis.y} x2="1600" y2={axis.y} style={lineStyle} />
     </Canvas>
   );
 };
