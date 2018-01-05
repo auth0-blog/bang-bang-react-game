@@ -1,27 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const CannonPipe = () => {
+const CannonPipe = (props) => {
   const cannonPipeStyle = {
     fill: '#595959',
   };
+  const rotation = 0;
+  const transform = `rotate(${rotation}, ${props.xAxis}, ${props.yAxis})`;
   return (
-    <g id="cannon" transform="rotate(45, 340, 650)">
+    <g id="cannon" transform={transform}>
       <ellipse
         style={cannonPipeStyle}
-        cx="340"
-        cy="650"
+        cx={props.xAxis}
+        cy={props.yAxis}
         rx="40"
         ry="40"
       />
       <rect
         style={cannonPipeStyle}
-        x="300"
-        y="550"
+        x={props.xAxis - 40}
+        y={props.yAxis - 100}
         width="80"
         height="100"
       />
     </g>
   );
+};
+
+CannonPipe.propTypes = {
+  xAxis: PropTypes.number.isRequired,
+  yAxis: PropTypes.number.isRequired,
 };
 
 export default CannonPipe;
