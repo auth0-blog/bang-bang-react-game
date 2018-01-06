@@ -20,11 +20,10 @@ const dotProduct = (x1, y1, x2, y2) => {
 
 const calculateAngle = (x1, y1, x2, y2) => {
   const dividend = dotProduct(x1, y1, x2, y2);
-  const magnitude1 = magnitude(x1, x2);
-  const magnitude2 = magnitude(y1, y2);
+  const magnitude1 = magnitude(x1, y1);
+  const magnitude2 = magnitude(y2, x2);
   const divisor = magnitude1 * magnitude2;
-  console.log(Math.acos(dividend / divisor));
-  return radiansToDegrees(Math.acos(dividend / divisor));
+  return radiansToDegrees(dividend / divisor);
 };
 
 export {

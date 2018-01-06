@@ -4,8 +4,8 @@ import { calculateAngle, dotProduct, magnitude } from '../src/Utils/formulas';
 
 describe('Formulas', () => {
   it('should calculate angles properly', () => {
-    // const angle = calculateAngle(4, 0, 4, 2);
-    // assert.equal(Math.round(angle * 100000) / 100000, 45);
+    const angle = calculateAngle(3, 5, -9, 20);
+    assert.equal(angle, 32.70645662859666);
   });
 
   it('should calculate magnitude properly', () => {
@@ -21,11 +21,11 @@ describe('Formulas', () => {
     result = magnitude(-1, 0);
     assert.equal(result, 1);
 
-    result = magnitude(3, 5);
-    assert.equal(result, Math.sqrt(34));
-
     result = magnitude(1, 2);
     assert.equal(result, Math.sqrt(5));
+
+    result = magnitude(3, 5);
+    assert.equal(result, Math.sqrt(34));
 
     result = magnitude(-9, 20);
     assert.equal(result, Math.sqrt(481));
@@ -49,5 +49,8 @@ describe('Formulas', () => {
 
     result = dotProduct(0, 0, 0, 2);
     assert.equal(Number.isNaN(result), true);
+
+    result = dotProduct(-9, 20, 3, 5);
+    assert.equal(result, 73);
   });
 });

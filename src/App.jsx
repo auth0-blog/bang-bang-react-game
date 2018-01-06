@@ -22,7 +22,7 @@ class App extends Component {
 
   trackMouse(event) {
     const { pageX, pageY } = event;
-    const angle = 90 - calculateAngle(firstCannonAxis.x, firstCannonAxis.y, pageX, pageY);
+    const angle = calculateAngle(firstCannonAxis.x, firstCannonAxis.y, pageX, pageY);
     if (Number.isNaN(angle)) {
       return;
     }
