@@ -9,7 +9,7 @@ const magnitude = (x, y) => {
 };
 
 const calculateAngle = (x1, y1, x2, y2) => {
-  const dividend = 27;
+  const dividend = (x1 * x2) + (y1 * y2);
   const magnitude1 = magnitude(x1, x2);
   const magnitude2 = magnitude(y1, y2);
   const divisor = magnitude1 * magnitude2;
