@@ -6,6 +6,7 @@ const Canvas = (props) => {
   const viewBox = '0, 0, 1600, 800';
   return (
     <svg
+      id="my-super-canvas"
       className="bang-bang-canvas"
       viewBox={viewBox}
       preserveAspectRatio="xMaxYMax meet"
