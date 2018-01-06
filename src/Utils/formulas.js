@@ -26,10 +26,24 @@ const calculateAngle = (x1, y1, x2, y2) => {
   return radiansToDegrees(dividend / divisor);
 };
 
+const getCanvasPosition = (canvasId, event) => {
+  // mouse position on auto-scaling canvas
+  // https://stackoverflow.com/a/10298843/1232793
+
+  const svg = document.getElementById(canvasId);
+  const point = svg.createSVGPoint();
+
+  point.x = event.clientX;
+  point.y = event.clientY;
+  const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
+  return { x, y };
+};
+
 export {
   magnitude,
   calculateAngle,
   degreesToRadian,
   radiansToDegrees,
   dotProduct,
+  getCanvasPosition,
 };

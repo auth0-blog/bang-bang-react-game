@@ -11,6 +11,7 @@ const Canvas = (props) => {
       viewBox={viewBox}
       preserveAspectRatio="xMaxYMax meet"
       onMouseMove={props.trackMouse}
+      onClick={props.mouseClicked}
     >
       {props.children}
     </svg>
@@ -20,6 +21,7 @@ const Canvas = (props) => {
 Canvas.propTypes = {
   children: PropTypes.node.isRequired,
   trackMouse: PropTypes.func.isRequired,
+  mouseClicked: PropTypes.func.isRequired,
 };
 
 export default Canvas;

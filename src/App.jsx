@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Canvas from './Canvas/Canvas';
 import Ground from './Ground/Ground';
 import Cannon from './Cannon/Cannon';
-import { calculateAngle } from './Utils/formulas';
+import { calculateAngle, getCanvasPosition } from './Utils/formulas';
 import Sky from './Sky/Sky';
 import './App.css';
+import CannonBall from './CannonBall/CannonBall';
 
 const firstCannonAxis = {
   x: 200,
@@ -15,9 +16,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
+    this.showCannonBall = this.showCannonBall.bind(this);
     this.state = {
       angle: 45,
       mousePosition: {
+        x: 0,
+        y: 0,
+      },
+      showCannonBall: false,
+      cannonBallPosition: {
         x: 0,
         y: 0,
       },
@@ -25,14 +32,7 @@ class App extends Component {
   }
 
   trackMouse(event) {
-    // mouse position on auto-scaling canvas
-    // https://stackoverflow.com/a/10298843/1232793
-    const svg = document.getElementById('my-super-canvas');
-    const point = svg.createSVGPoint();
-
-    point.x = event.clientX;
-    point.y = event.clientY;
-    const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
+    const mousePosition = getCanvasPosition('my-super-canvas', event);
 
     const { pageX, pageY } = event;
     const angle = calculateAngle(firstCannonAxis.x, firstCannonAxis.y, pageX, pageY);
@@ -41,7 +41,16 @@ class App extends Component {
     }
     this.setState({
       angle,
-      mousePosition: { x, y },
+      mousePosition: { ...mousePosition },
+    });
+  }
+
+  showCannonBall(event) {
+    const mousePosition = getCanvasPosition('my-super-canvas', event);
+    this.setState({
+      ...this.state,
+      showCannonBall: true,
+      cannonBallPosition: { ...mousePosition },
     });
   }
 
@@ -53,7 +62,10 @@ class App extends Component {
     const showVisualClues = false;
     return (
       <div>
-        <Canvas trackMouse={event => (this.trackMouse(event))}>
+        <Canvas
+          trackMouse={event => (this.trackMouse(event))}
+          mouseClicked={event => (this.showCannonBall(event))}
+        >
           <Sky />
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.state.angle} />
@@ -84,6 +96,12 @@ class App extends Component {
               </g>
             )
           }
+          {
+            this.state.showCannonBall &&
+            <CannonBall
+              x={this.state.cannonBallPosition.x}
+              y={this.state.cannonBallPosition.y}
+            />}
         </Canvas>
         <p>
           Mouse X: {this.state.mousePosition.x};
@@ -96,3 +114,4 @@ class App extends Component {
 }
 
 export default App;
+
