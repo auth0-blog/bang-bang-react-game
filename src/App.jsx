@@ -50,21 +50,40 @@ class App extends Component {
       stroke: 'black',
       strokeWidth: '2',
     };
+    const showVisualClues = false;
     return (
       <div>
         <Canvas trackMouse={event => (this.trackMouse(event))}>
           <Sky />
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.state.angle} />
-          <line x1={0} y1={firstCannonAxis.y} x2={1600} y2={firstCannonAxis.y} style={lineStyle} />
-          <line x1={firstCannonAxis.x} y1={0} x2={firstCannonAxis.x} y2={800} style={lineStyle} />
-          <line
-            x1={firstCannonAxis.x}
-            y1={firstCannonAxis.y}
-            x2={this.state.mousePosition.x}
-            y2={this.state.mousePosition.y}
-            style={lineStyle}
-          />
+          {
+            showVisualClues && (
+              <g>
+                <line
+                  x1={0}
+                  y1={firstCannonAxis.y}
+                  x2={1600}
+                  y2={firstCannonAxis.y}
+                  style={lineStyle}
+                />
+                <line
+                  x1={firstCannonAxis.x}
+                  y1={0}
+                  x2={firstCannonAxis.x}
+                  y2={800}
+                  style={lineStyle}
+                />
+                <line
+                  x1={firstCannonAxis.x}
+                  y1={firstCannonAxis.y}
+                  x2={this.state.mousePosition.x}
+                  y2={this.state.mousePosition.y}
+                  style={lineStyle}
+                />
+              </g>
+            )
+          }
         </Canvas>
         <p>
           Mouse X: {this.state.mousePosition.x};
