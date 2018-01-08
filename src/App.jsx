@@ -6,6 +6,7 @@ import { calculateAngle, getCanvasPosition } from './Utils/formulas';
 import Sky from './Sky/Sky';
 import './App.css';
 import CannonBall from './CannonBall/CannonBall';
+import Position from './Utils/Position';
 
 const firstCannonAxis = {
   x: 200,
@@ -24,10 +25,7 @@ class App extends Component {
         y: 0,
       },
       showCannonBall: false,
-      cannonBallPosition: {
-        x: 0,
-        y: 0,
-      },
+      cannonBallPosition: new Position(-100, 0),
     };
   }
 
@@ -50,7 +48,7 @@ class App extends Component {
     this.setState({
       ...this.state,
       showCannonBall: true,
-      cannonBallPosition: { ...mousePosition },
+      cannonBallPosition: mousePosition,
     });
   }
 
@@ -96,12 +94,10 @@ class App extends Component {
               </g>
             )
           }
-          {
-            this.state.showCannonBall &&
-            <CannonBall
-              x={this.state.cannonBallPosition.x}
-              y={this.state.cannonBallPosition.y}
-            />}
+          <CannonBall
+            visible={this.state.showCannonBall}
+            position={this.state.cannonBallPosition}
+          />
         </Canvas>
         <p>
           Mouse X: {this.state.mousePosition.x};

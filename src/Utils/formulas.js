@@ -1,3 +1,5 @@
+import Position from './Position';
+
 const degreesToRadian = degrees => ((degrees * Math.PI) / 180);
 
 const radiansToDegrees = radians => ((radians * 180) / Math.PI);
@@ -36,7 +38,7 @@ const getCanvasPosition = (canvasId, event) => {
   point.x = event.clientX;
   point.y = event.clientY;
   const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
-  return { x, y };
+  return new Position(x, y);
 };
 
 export {
