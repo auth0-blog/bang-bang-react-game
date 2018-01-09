@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import './Canvas.css';
 
 const Canvas = (props) => {
-  const viewBox = '0, 0, 1600, 800';
+  const viewBox = '-400, -700, 800, 800';
+  const style = {
+    width: '400px',
+    height: '400px',
+  };
   return (
     <svg
       id="my-super-canvas"
       className="bang-bang-canvas"
       viewBox={viewBox}
+      style={style}
       preserveAspectRatio="xMaxYMax meet"
       onMouseMove={props.trackMouse}
       onClick={props.mouseClicked}

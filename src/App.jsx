@@ -9,8 +9,8 @@ import CannonBall from './CannonBall/CannonBall';
 import Position from './Utils/Position';
 
 const firstCannonAxis = {
-  x: 200,
-  y: 700,
+  x: 0,
+  y: 0,
 };
 
 class App extends Component {
@@ -32,8 +32,11 @@ class App extends Component {
   trackMouse(event) {
     const mousePosition = getCanvasPosition('my-super-canvas', event);
 
-    const { pageX, pageY } = event;
-    const angle = calculateAngle(firstCannonAxis.x, firstCannonAxis.y, pageX, pageY);
+    const angle = calculateAngle(
+      firstCannonAxis.x, firstCannonAxis.y,
+      mousePosition.x, mousePosition.y,
+    );
+
     if (Number.isNaN(angle)) {
       return;
     }
@@ -57,7 +60,7 @@ class App extends Component {
       stroke: 'black',
       strokeWidth: '2',
     };
-    const showVisualClues = false;
+    const showVisualClues = true;
     return (
       <div>
         <Canvas
@@ -71,17 +74,17 @@ class App extends Component {
             showVisualClues && (
               <g>
                 <line
-                  x1={0}
+                  x1={-400}
                   y1={firstCannonAxis.y}
-                  x2={1600}
+                  x2={400}
                   y2={firstCannonAxis.y}
                   style={lineStyle}
                 />
                 <line
                   x1={firstCannonAxis.x}
-                  y1={0}
+                  y1={-800}
                   x2={firstCannonAxis.x}
-                  y2={800}
+                  y2={400}
                   style={lineStyle}
                 />
                 <line
