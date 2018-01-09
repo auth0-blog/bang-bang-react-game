@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Position from '../Utils/Position';
+import './CannonBall.css';
 
 class CannonBall extends Component {
   constructor(props) {
     super(props);
-    this.move = this.move.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     this.state = {
       position: props.position,
@@ -14,39 +14,25 @@ class CannonBall extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const self = this;
     this.setState({
       position: nextProps.position,
       visible: nextProps.visible,
     });
-  }
-
-  move() {
-    const newPosition = this.state.position;
-    const showCannonBall = newPosition.x > 0 && newPosition.x < 1600;
-    newPosition.x = showCannonBall ? newPosition.x + 1 : -100;
-    this.setState({
-      ...this.state,
-      position: newPosition,
-      visible: showCannonBall,
-    });
+    if (!nextProps.visible) return;
+    setTimeout(() => {
+      self.setState({
+        position: nextProps.position,
+        visible: true,
+      });
+    }, 5000);
   }
 
   render() {
-    const self = this;
-    const cannonStyle = {
-      fill: '#333',
-    };
-
-    // moving the ball!
-    if (this.state.visible) {
-      setTimeout(() => {
-        self.move();
-      }, 1);
-    }
-
+    if (!this.state.visible) return null;
     return (
       <ellipse
-        style={cannonStyle}
+        className="cannon-ball"
         cx={this.state.position.x}
         cy={this.state.position.y}
         rx="20"
