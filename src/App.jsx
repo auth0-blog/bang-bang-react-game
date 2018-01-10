@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Canvas from './Canvas/Canvas';
-import Ground from './Ground/Ground';
-import Cannon from './Cannon/Cannon';
-import { calculateAngle, getCanvasPosition } from './Utils/formulas';
-import Sky from './Sky/Sky';
+import Canvas from './components/Canvas/Canvas';
+import Ground from './components/Ground/Ground';
+import Cannon from './components/Cannon/Cannon';
+import { calculateAngle, getCanvasPosition } from './utils/formulas';
+import Sky from './components/Sky/Sky';
 import './App.css';
-import CannonBall from './CannonBall/CannonBall';
-import Position from './Utils/Position';
+import CannonBall from './components/CannonBall/CannonBall';
+import Position from './utils/Position';
 
 const firstCannonAxis = {
   x: 0,

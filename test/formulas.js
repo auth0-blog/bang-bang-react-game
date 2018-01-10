@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { calculateAngle, dotProduct, magnitude } from '../src/Utils/formulas';
+import { calculateAngle, dotProduct, magnitude } from '../src/utils/formulas';
 
 describe('Formulas', () => {
   it('should calculate angles properly', () => {

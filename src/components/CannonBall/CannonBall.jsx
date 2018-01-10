@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Position from '../Utils/Position';
+import Position from '../../utils/Position';
 import './CannonBall.css';
 
 class CannonBall extends Component {
