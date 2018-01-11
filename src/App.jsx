@@ -7,6 +7,7 @@ import Sky from './components/Sky/Sky';
 import './App.css';
 import CannonBall from './components/CannonBall/CannonBall';
 import Position from './utils/Position';
+import VisualClues from './components/VisualClues/VisualClues';
 
 const firstCannonAxis = {
   x: 0,
@@ -56,10 +57,6 @@ class App extends Component {
   }
 
   render() {
-    const lineStyle = {
-      stroke: 'black',
-      strokeWidth: '2',
-    };
     const showVisualClues = true;
     return (
       <div>
@@ -70,37 +67,11 @@ class App extends Component {
           <Sky />
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.state.angle} />
-          {
-            showVisualClues && (
-              <g>
-                <line
-                  x1={-400}
-                  y1={firstCannonAxis.y}
-                  x2={400}
-                  y2={firstCannonAxis.y}
-                  style={lineStyle}
-                />
-                <line
-                  x1={firstCannonAxis.x}
-                  y1={-800}
-                  x2={firstCannonAxis.x}
-                  y2={400}
-                  style={lineStyle}
-                />
-                <line
-                  x1={firstCannonAxis.x}
-                  y1={firstCannonAxis.y}
-                  x2={this.state.mousePosition.x}
-                  y2={this.state.mousePosition.y}
-                  style={lineStyle}
-                />
-              </g>
-            )
-          }
           <CannonBall
             visible={this.state.showCannonBall}
             position={this.state.cannonBallPosition}
           />
+          <VisualClues visible={showVisualClues} position={this.state.mousePosition} />
         </Canvas>
         <p>
           Mouse X: {this.state.mousePosition.x};
