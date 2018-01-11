@@ -6,16 +6,23 @@ class CannonBall extends Component {
   constructor(props) {
     super(props);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   componentDidMount() {
-    const { position, moveBall, id } = this.props;
-    moveBall(position, id);
+    const {
+      position, moveBall, id, angle,
+    } = this.props;
+
+    moveBall(position, id, angle);
   }
 
   componentDidUpdate() {
-    const { position, moveBall, id } = this.props;
-    moveBall(position, id);
+    const {
+      position, moveBall, id, angle,
+    } = this.props;
+
+    moveBall(position, id, angle);
   }
 
   render() {
@@ -33,6 +40,7 @@ class CannonBall extends Component {
 
 CannonBall.propTypes = {
   position: PropTypes.instanceOf(Position).isRequired,
+  angle: PropTypes.number.isRequired,
   moveBall: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };

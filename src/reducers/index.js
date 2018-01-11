@@ -1,6 +1,6 @@
 import { SHOOT, MOVE_MOUSE, MOVE_BALL } from '../actions';
 import Position from '../utils/Position';
-import { calculateAngle } from '../utils/formulas';
+import { calculateAngle, calculateNextposition } from '../utils/formulas';
 
 const initialState = {
   cannonBalls: [],
@@ -8,11 +8,13 @@ const initialState = {
   angle: 45,
 };
 
-function shoot(state) {
+function shoot(state, action) {
   const { cannonBalls } = state;
+  const { angle } = action;
   const id = (new Date()).getTime();
   const cannonBall = {
     position: new Position(0, 0),
+    angle,
     id,
   };
   return {
@@ -31,11 +33,13 @@ function moveMouse(state, action) {
   };
 }
 
+// reference https://answers.unity.com/questions/491719/how-to-calculate-a-new-position-having-angle-and-d.html
 function moveBall(state, action) {
   const movingBalls = state.cannonBalls.filter(ball => (ball.id !== action.id));
   const movingBall = state.cannonBalls.find(ball => (ball.id === action.id));
   const { x, y } = movingBall.position;
-  movingBall.position = new Position(x + 2, y - 2);
+  const { angle } = movingBall;
+  movingBall.position = calculateNextposition(x, y, angle);
 
   const cannonBalls = [...movingBalls];
   if (movingBall.position.y > -500) {

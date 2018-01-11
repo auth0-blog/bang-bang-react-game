@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   render() {
-    const showVisualClues = true;
+    const showVisualClues = false;
     const firstCannonAxis = {
       x: 0,
       y: 0,
@@ -41,7 +41,12 @@ class App extends Component {
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
           {this.props.cannonBalls.map(cannonBall => (
-            <Trajectory key={cannonBall.id} id={cannonBall.id} position={cannonBall.position} />
+            <Trajectory
+              key={cannonBall.id}
+              id={cannonBall.id}
+              position={cannonBall.position}
+              angle={cannonBall.angle}
+            />
           ))}
           <VisualClues visible={showVisualClues} position={this.props.mousePosition} />
         </Canvas>
@@ -58,6 +63,7 @@ class App extends Component {
 App.propTypes = {
   cannonBalls: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
+    angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
   shoot: PropTypes.func.isRequired,

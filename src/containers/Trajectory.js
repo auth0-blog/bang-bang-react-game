@@ -6,13 +6,14 @@ const mapStateToProps = (state, ownProps) => {
   const { cannonBalls } = state;
   const cannonBall = cannonBalls.find(ball => (ball.id === ownProps.id));
   const position = cannonBall ? cannonBall.position : ownProps.position;
-  return { position };
+  const { angle } = ownProps;
+  return { position, angle };
 };
 
 const mapDispatchToProps = dispatch => ({
-  moveBall: (position, id) => {
+  moveBall: (position, id, angle) => {
     setTimeout(() => {
-      dispatch(move(position, id));
+      dispatch(move(position, id, angle));
     });
   },
 });

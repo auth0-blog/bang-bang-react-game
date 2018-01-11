@@ -31,8 +31,16 @@ const calculateAngle = (x1, y1, x2, y2) => {
   return radiansToDegrees(Math.atan(quotient)) * -1;
 };
 
+const calculateNextposition = (x, y, angle) => {
+  const realAngle = (angle * -1) + 90;
+  const newX = radiansToDegrees(Math.cos(degreesToRadian(realAngle))) / 10;
+  const newY = radiansToDegrees(Math.sin(degreesToRadian(realAngle))) / 10;
+  return new Position(x + newX, y - newY);
+};
+
 export {
   degreesToRadian,
+  calculateNextposition,
   radiansToDegrees,
   getCanvasPosition,
   calculateAngle,
