@@ -2,9 +2,9 @@ export const SHOOT = 'SHOOT';
 export const MOVE_MOUSE = 'MOVE_MOUSE';
 export const MOVE_BALL = 'MOVE_BALL';
 
-export const shoot = position => ({
+export const shoot = angle => ({
   type: SHOOT,
-  position,
+  angle,
 });
 
 export const moveMouse = position => ({

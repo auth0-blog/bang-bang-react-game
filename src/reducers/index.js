@@ -8,11 +8,11 @@ const initialState = {
   angle: 45,
 };
 
-function shoot(state, action) {
+function shoot(state) {
   const { cannonBalls } = state;
   const id = (new Date()).getTime();
   const cannonBall = {
-    position: action.position,
+    position: new Position(0, 0),
     id,
   };
   return {
@@ -34,8 +34,8 @@ function moveMouse(state, action) {
 function moveBall(state, action) {
   const movingBalls = state.cannonBalls.filter(ball => (ball.id !== action.id));
   const movingBall = state.cannonBalls.find(ball => (ball.id === action.id));
-  const { x, y } = action.position;
-  movingBall.position = new Position(x, y);
+  const { x, y } = movingBall.position;
+  movingBall.position = new Position(x + 2, y - 2);
 
   const cannonBalls = [...movingBalls];
   if (movingBall.position.y > -500) {

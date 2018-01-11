@@ -10,13 +10,11 @@ class CannonBall extends Component {
 
   componentDidMount() {
     const { position, moveBall, id } = this.props;
-    position.y += 1;
     moveBall(position, id);
   }
 
   componentDidUpdate() {
     const { position, moveBall, id } = this.props;
-    position.y -= 2;
     moveBall(position, id);
   }
 

@@ -21,9 +21,8 @@ class App extends Component {
     this.props.moveMouse(mousePosition);
   }
 
-  shootCannonBall(event) {
-    const mousePosition = getCanvasPosition('my-super-canvas', event);
-    this.props.shoot(mousePosition);
+  shootCannonBall() {
+    this.props.shoot(this.props.angle);
   }
 
   render() {

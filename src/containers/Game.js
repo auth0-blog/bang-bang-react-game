@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  shoot: (position) => {
-    dispatch(shoot(position));
+  shoot: (angle) => {
+    dispatch(shoot(angle));
   },
   moveMouse: (position) => {
     dispatch(moveMouse(position));
