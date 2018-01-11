@@ -42,7 +42,7 @@ function moveBall(state, action) {
   movingBall.position = calculateNextposition(x, y, angle);
 
   const cannonBalls = [...movingBalls];
-  if (movingBall.position.y > -500) {
+  if (movingBall.position.y > -800 && movingBall.position.x > -500 && movingBall.position.x < 500) {
     cannonBalls.push(movingBall);
   }
 
