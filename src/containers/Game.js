@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-import { shoot } from '../actions';
+import { shoot, moveMouse } from '../actions';
 import App from '../App';
 
 const mapStateToProps = (state) => {
-  const { cannonBalls } = state;
+  const { cannonBalls, mousePosition, angle } = state;
   return {
-    cannonBalls,
+    cannonBalls, mousePosition, angle,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   shoot: (position) => {
     dispatch(shoot(position));
+  },
+  moveMouse: (position) => {
+    dispatch(moveMouse(position));
   },
 });
 
