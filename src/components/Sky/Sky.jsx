@@ -8,9 +8,9 @@ const Sky = () => {
     <g id="sky">
       <rect
         style={skyStyle}
-        x="0"
-        y="0"
-        width="1600"
+        x="-400"
+        y="-700"
+        width="800"
         height="800"
       />
     </g>
