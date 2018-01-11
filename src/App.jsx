@@ -6,7 +6,7 @@ import Cannon from './components/Cannon/Cannon';
 import { getCanvasPosition } from './utils/formulas';
 import Sky from './components/Sky/Sky';
 import './App.css';
-import CannonBall from './components/CannonBall/CannonBall';
+import Trajectory from './containers/Trajectory';
 import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
 
@@ -42,7 +42,7 @@ class App extends Component {
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
           {this.props.cannonBalls.map(cannonBall => (
-            <CannonBall key={cannonBall.key} position={cannonBall.position} />
+            <Trajectory key={cannonBall.id} id={cannonBall.id} position={cannonBall.position} />
           ))}
           <VisualClues visible={showVisualClues} position={this.props.mousePosition} />
         </Canvas>
@@ -59,7 +59,7 @@ class App extends Component {
 App.propTypes = {
   cannonBalls: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
-    key: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   })).isRequired,
   shoot: PropTypes.func.isRequired,
   moveMouse: PropTypes.func.isRequired,

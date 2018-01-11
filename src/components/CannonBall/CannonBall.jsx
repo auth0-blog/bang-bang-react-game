@@ -1,19 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Position from '../../utils/Position';
 
-const CannonBall = props => (
-  <ellipse
-    className="cannon-ball"
-    cx={props.position.x}
-    cy={props.position.y}
-    rx="20"
-    ry="20"
-  />
-);
+class CannonBall extends Component {
+  constructor(props) {
+    super(props);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    const { position, moveBall, id } = this.props;
+    position.y += 1;
+    moveBall(position, id);
+  }
+
+  componentDidUpdate() {
+    const { position, moveBall, id } = this.props;
+    position.y -= 2;
+    moveBall(position, id);
+  }
+
+  render() {
+    return (
+      <ellipse
+        className="cannon-ball"
+        cx={this.props.position.x}
+        cy={this.props.position.y}
+        rx="20"
+        ry="20"
+      />
+    );
+  }
+}
 
 CannonBall.propTypes = {
   position: PropTypes.instanceOf(Position).isRequired,
+  moveBall: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default CannonBall;
