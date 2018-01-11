@@ -21,10 +21,7 @@ class App extends Component {
     this.trackMouse = this.trackMouse.bind(this);
     this.state = {
       angle: 45,
-      mousePosition: {
-        x: 0,
-        y: 0,
-      },
+      mousePosition: new Position(0, 0),
     };
   }
 
@@ -41,7 +38,7 @@ class App extends Component {
     }
     this.setState({
       angle,
-      mousePosition: { ...mousePosition },
+      mousePosition,
     });
   }
 
@@ -61,8 +58,8 @@ class App extends Component {
           <Sky />
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.state.angle} />
-          {this.props.cannonBalls.map(cannonBallPosition => (
-            <CannonBall position={cannonBallPosition} />
+          {this.props.cannonBalls.map(cannonBall => (
+            <CannonBall key={cannonBall.key} position={cannonBall.position} />
           ))}
           <VisualClues visible={showVisualClues} position={this.state.mousePosition} />
         </Canvas>
@@ -77,7 +74,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  cannonBalls: PropTypes.arrayOf(Position).isRequired,
+  cannonBalls: PropTypes.arrayOf(PropTypes.shape({
+    position: PropTypes.instanceOf(Position).isRequired,
+    key: PropTypes.number.isRequired,
+  })).isRequired,
   shoot: PropTypes.func.isRequired,
 };
 
