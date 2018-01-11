@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
 import Cannon from './components/Cannon/Cannon';
@@ -18,15 +19,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
-    this.showCannonBall = this.showCannonBall.bind(this);
     this.state = {
       angle: 45,
       mousePosition: {
         x: 0,
         y: 0,
       },
-      showCannonBall: false,
-      cannonBallPosition: new Position(-100, 0),
     };
   }
 
@@ -47,13 +45,9 @@ class App extends Component {
     });
   }
 
-  showCannonBall(event) {
+  shootCannonBall(event) {
     const mousePosition = getCanvasPosition('my-super-canvas', event);
-    this.setState({
-      ...this.state,
-      showCannonBall: true,
-      cannonBallPosition: mousePosition,
-    });
+    this.props.shoot(mousePosition);
   }
 
   render() {
@@ -62,15 +56,14 @@ class App extends Component {
       <div>
         <Canvas
           trackMouse={event => (this.trackMouse(event))}
-          mouseClicked={event => (this.showCannonBall(event))}
+          mouseClicked={event => (this.shootCannonBall(event))}
         >
           <Sky />
           <Ground />
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.state.angle} />
-          <CannonBall
-            visible={this.state.showCannonBall}
-            position={this.state.cannonBallPosition}
-          />
+          {this.props.cannonBalls.map(cannonBallPosition => (
+            <CannonBall position={cannonBallPosition} />
+          ))}
           <VisualClues visible={showVisualClues} position={this.state.mousePosition} />
         </Canvas>
         <p>
@@ -82,6 +75,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  cannonBalls: PropTypes.arrayOf(Position).isRequired,
+  shoot: PropTypes.func.isRequired,
+};
 
 export default App;
 
