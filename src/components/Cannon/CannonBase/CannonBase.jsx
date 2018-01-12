@@ -4,13 +4,13 @@ import { pathFromBezierCurve } from '../../../utils/formulas';
 
 const CannonBase = (props) => {
   const cannonBaseStyle = {
-    fill: '#9e5e12',
-    stroke: '#9e5e12',
-    strokeWidth: '5px',
+    fill: '#a16012',
+    stroke: '#75450e',
+    strokeWidth: '2px',
   };
 
-  const baseWith = 100;
-  const halfBase = 50;
+  const baseWith = 80;
+  const halfBase = 40;
   const height = 60;
   const negativeHeight = height * -1;
 
@@ -20,11 +20,11 @@ const CannonBase = (props) => {
       y: props.yAxis + height,
     },
     initialControlPoint: {
-      x: 25,
+      x: 20,
       y: negativeHeight,
     },
     endingControlPoint: {
-      x: 75,
+      x: 60,
       y: negativeHeight,
     },
     endingAxis: {
