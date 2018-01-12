@@ -12,11 +12,7 @@ script:
   - npm test
 
 after_success:
-  - echo "TRAVIS_TAG"
+  - echo "$TRAVIS_TAG"
   - echo "$TRAVIS_BRANCH"
-  - if [ -z "$TRAVIS_BRANCH" ]; then
-    echo "no need to push"
-    else
-    echo "please push"
-    fi
+  - if [ "$TRAVIS_TAG" == "v0.1.3" ]; then echo "please push" fi
   - echo "ok"
