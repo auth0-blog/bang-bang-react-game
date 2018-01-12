@@ -25,7 +25,7 @@ class App extends Component {
       self.props.createFlyingDisc();
     }, 1000);
     document.onkeypress = (event) => {
-      if (event.keyCode === 32) {
+      if (event.keyCode === 32 || event.charCode === 32) {
         self.shootCannonBall();
       }
     };
