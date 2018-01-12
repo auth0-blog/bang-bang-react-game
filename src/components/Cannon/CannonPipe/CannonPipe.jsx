@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const CannonPipe = (props) => {
   const cannonPipeStyle = {
-    fill: '#595959',
+    fill: '#999',
+    stroke: '#666',
   };
   const transform = `rotate(${props.rotation}, ${props.xAxis}, ${props.yAxis})`;
   return (

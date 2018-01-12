@@ -1,18 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Position from '../../utils/Position';
-
-function convertToPath(cubicBezierCurve) {
-  const {
-    initialAxis, initialControlPoint, endingControlPoint, endingAxis,
-  } = cubicBezierCurve;
-  return `
-    M${initialAxis.x} ${initialAxis.y}
-    c ${initialControlPoint.x} ${initialControlPoint.y}
-    ${endingControlPoint.x} ${endingControlPoint.y}
-    ${endingAxis.x} ${endingAxis.y}
-  `;
-}
+import { pathFromBezierCurve } from '../../utils/formulas';
 
 const DiscTop = (props) => {
   const discTopStyle = {
@@ -46,7 +35,7 @@ const DiscTop = (props) => {
   return (
     <path
       style={discTopStyle}
-      d={convertToPath(cubicBezierCurve)}
+      d={pathFromBezierCurve(cubicBezierCurve)}
     />
   );
 };

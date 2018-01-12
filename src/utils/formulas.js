@@ -38,10 +38,23 @@ const calculateNextposition = (x, y, angle) => {
   return new Position(x + newX, y - newY);
 };
 
+const pathFromBezierCurve = (cubicBezierCurve) => {
+  const {
+    initialAxis, initialControlPoint, endingControlPoint, endingAxis,
+  } = cubicBezierCurve;
+  return `
+    M${initialAxis.x} ${initialAxis.y}
+    c ${initialControlPoint.x} ${initialControlPoint.y}
+    ${endingControlPoint.x} ${endingControlPoint.y}
+    ${endingAxis.x} ${endingAxis.y}
+  `;
+};
+
 export {
   degreesToRadian,
   calculateNextposition,
   radiansToDegrees,
   getCanvasPosition,
   calculateAngle,
+  pathFromBezierCurve,
 };

@@ -1,21 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-function convertToPath(cubicBezierCurve) {
-  const {
-    initialAxis, initialControlPoint, endingControlPoint, endingAxis,
-  } = cubicBezierCurve;
-  return `
-    M${initialAxis.x} ${initialAxis.y}
-    c ${initialControlPoint.x} ${initialControlPoint.y}
-    ${endingControlPoint.x} ${endingControlPoint.y}
-    ${endingAxis.x} ${endingAxis.y}
-  `;
-}
+import { pathFromBezierCurve } from '../../../utils/formulas';
 
 const CannonBase = (props) => {
   const cannonBaseStyle = {
-    stroke: '#000000',
+    fill: '#9e5e12',
+    stroke: '#9e5e12',
+    strokeWidth: '5px',
   };
 
   const baseWith = 100;
@@ -43,10 +34,19 @@ const CannonBase = (props) => {
   };
 
   return (
-    <path
-      style={cannonBaseStyle}
-      d={convertToPath(cubicBezierCurve)}
-    />
+    <g>
+      <path
+        style={cannonBaseStyle}
+        d={pathFromBezierCurve(cubicBezierCurve)}
+      />
+      <line
+        x1={props.xAxis - halfBase}
+        y1={props.yAxis + height}
+        x2={props.xAxis + halfBase}
+        y2={props.yAxis + height}
+        style={cannonBaseStyle}
+      />
+    </g>
   );
 };
 
