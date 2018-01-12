@@ -1,56 +1,13 @@
 import assert from 'assert';
 
-import { calculateAngle, dotProduct, magnitude } from '../src/utils/formulas';
+import { calculateAngle } from '../src/utils/formulas';
 
 describe('Formulas', () => {
-  it('should calculate angles properly', () => {
-    const angle = calculateAngle(3, 5, -9, 20);
-    assert.equal(angle, 32.70645662859666);
-  });
+  it('should return 90 when aiming below', () => {
+    let angle = calculateAngle(0, 0, 20, 20);
+    assert.equal(angle, 90);
 
-  it('should calculate magnitude properly', () => {
-    let result = magnitude(0, 1);
-    assert.equal(result, 1);
-
-    result = magnitude(1, 0);
-    assert.equal(result, 1);
-
-    result = magnitude(0, -1);
-    assert.equal(result, 1);
-
-    result = magnitude(-1, 0);
-    assert.equal(result, 1);
-
-    result = magnitude(1, 2);
-    assert.equal(result, Math.sqrt(5));
-
-    result = magnitude(3, 5);
-    assert.equal(result, Math.sqrt(34));
-
-    result = magnitude(-9, 20);
-    assert.equal(result, Math.sqrt(481));
-  });
-
-  it('should calculate dot products properly', () => {
-    let result = dotProduct(4, 0, 0, 2);
-    assert.equal(result, 0);
-
-    result = dotProduct(4, 1, 0, 2);
-    assert.equal(result, 2);
-
-    result = dotProduct(4, -1, 0, 2);
-    assert.equal(result, -2);
-
-    result = dotProduct(0, 0, 0, 0);
-    assert.equal(Number.isNaN(result), true);
-
-    result = dotProduct(0, 1, 0, 0);
-    assert.equal(Number.isNaN(result), true);
-
-    result = dotProduct(0, 0, 0, 2);
-    assert.equal(Number.isNaN(result), true);
-
-    result = dotProduct(-9, 20, 3, 5);
-    assert.equal(result, 73);
+    angle = calculateAngle(0, 0, -20, -20);
+    assert.equal(angle, -45);
   });
 });
