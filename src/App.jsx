@@ -23,6 +23,11 @@ class App extends Component {
     setInterval(() => {
       self.props.createFlyingDisc();
     }, 1000);
+    document.onkeypress = (event) => {
+      if (event.keyCode === 32) {
+        self.shootCannonBall();
+      }
+    };
   }
 
   trackMouse(event) {
