@@ -1,4 +1,4 @@
-import {SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC, DESTROY_DISC} from '../actions';
+import { SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC, DESTROY_DISC } from '../actions';
 import Position from '../utils/Position';
 import { calculateAngle, calculateNextposition } from '../utils/formulas';
 
@@ -68,7 +68,7 @@ function moveBall(state, action) {
 
 function addFlyingDisc(state) {
   const { flyingDiscs } = state;
-  if (flyingDiscs.length === 1) return state;
+  if (flyingDiscs.length === 4) return state;
   const id = (new Date()).getTime();
   const predefinedPosition = Math.floor(Math.random() * 4);
   const discPosition = predefinedPositions[predefinedPosition];
@@ -111,12 +111,16 @@ function moveDisc(state, action) {
 function destroyDiscs(state, action) {
   const { objectsDestroyed } = action;
 
-  const discsDestroyed = objectsDestroyed.map(object => (object.discId));
-  const cannonBallsDestroyed = objectsDestroyed.map(object => (object.cannonBallId));
+  const discsDestroyed = objectsDestroyed.map(object => (object.disc.id));
+  const cannonBallsDestroyed = objectsDestroyed.map(object => (object.ball.id));
 
-  const flyingDiscs = state.flyingDiscs.filter(disc => (discsDestroyed.indexOf(disc.id) >= 0));
+  const flyingDiscs = state.flyingDiscs.filter(disc => (discsDestroyed.indexOf(disc.id) < 0));
   const cannonBalls = state.cannonBalls
-    .filter(ball => (cannonBallsDestroyed.indexOf(ball.id) >= 0));
+    .filter(ball => (cannonBallsDestroyed.indexOf(ball.id) < 0));
+
+  if (flyingDiscs.length === state.flyingDiscs.length) {
+    return state;
+  }
 
   return {
     ...state,
