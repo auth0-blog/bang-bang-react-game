@@ -8,9 +8,14 @@ node_js:
 services:
   - docker
 
-before_install:
-  - docker build -t auth0-blog/bang-bang .
-  - npm install
-
 script:
   - npm test
+
+after_success:
+  - if [ -z "$TRAVIS_BRANCH" ]; then
+      echo "not a release, so no docker push"
+    else
+      docker build -t auth0blog/bang-bang .
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker push auth0blog/bang-bang;
+    fi
