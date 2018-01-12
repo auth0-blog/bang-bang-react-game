@@ -9,11 +9,20 @@ import './App.css';
 import Trajectory from './containers/Trajectory';
 import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
+import FlyingDiscMotion from './containers/FlyingDiscMotion';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    const self = this;
+    setInterval(() => {
+      self.props.createFlyingDisc();
+    }, 1000);
   }
 
   trackMouse(event) {
@@ -39,6 +48,14 @@ class App extends Component {
         >
           <Sky />
           <Ground />
+          {this.props.flyingDiscs.map(flyingDisc => (
+            <FlyingDiscMotion
+              key={flyingDisc.id}
+              id={flyingDisc.id}
+              position={flyingDisc.position}
+              angle={flyingDisc.angle}
+            />
+          ))}
           {this.props.cannonBalls.map(cannonBall => (
             <Trajectory
               key={cannonBall.id}
@@ -66,7 +83,13 @@ App.propTypes = {
     angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
+  flyingDiscs: PropTypes.arrayOf(PropTypes.shape({
+    position: PropTypes.instanceOf(Position).isRequired,
+    angle: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+  })).isRequired,
   shoot: PropTypes.func.isRequired,
+  createFlyingDisc: PropTypes.func.isRequired,
   moveMouse: PropTypes.func.isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
   angle: PropTypes.number.isRequired,
