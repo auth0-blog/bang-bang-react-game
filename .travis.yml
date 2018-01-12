@@ -16,7 +16,7 @@ after_success:
   - echo "$TRAVIS_BRANCH"
   - if [ -z "$TRAVIS_BRANCH" ]; then
       echo "no need to push";
-    else;
+    else
       docker build -t auth0blog/bang-bang .;
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       docker push auth0blog/bang-bang;
