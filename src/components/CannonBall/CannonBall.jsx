@@ -26,13 +26,18 @@ class CannonBall extends Component {
   }
 
   render() {
+    const ballStyle = {
+      fill: '#777',
+      stroke: '#444',
+      strokeWidth: '2px',
+    };
     return (
       <ellipse
-        className="cannon-ball"
+        style={ballStyle}
         cx={this.props.position.x}
         cy={this.props.position.y}
-        rx="20"
-        ry="20"
+        rx="16"
+        ry="16"
       />
     );
   }
