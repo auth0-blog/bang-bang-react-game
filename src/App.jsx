@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
 import Cannon from './components/Cannon/Cannon';
-import { getCanvasPosition } from './utils/formulas';
+import {checkCollision, getCanvasPosition} from './utils/formulas';
 import Sky from './components/Sky/Sky';
 import './App.css';
 import Trajectory from './containers/Trajectory';
@@ -48,8 +48,7 @@ class App extends Component {
           x2: ball.position.x + 8,
           y2: ball.position.y + 8,
         };
-        if (rectA.x1 < rectB.x2 && rectA.x2 > rectB.x1 &&
-          rectA.y1 < rectB.y2 && rectA.y2 > rectB.y1) {
+        if (checkCollision(rectA, rectB)) {
           objectsDestroyed.push({
             disc, ball,
           });
