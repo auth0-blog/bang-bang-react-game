@@ -14,5 +14,10 @@ script:
 after_success:
   - echo "$TRAVIS_TAG"
   - echo "$TRAVIS_BRANCH"
-  - if [ "$TRAVIS_TAG" == "v0.1.3" ]; then echo "please push" fi
-  - echo "ok"
+  - if [ -z "$TRAVIS_BRANCH" ]; then
+      echo "no need to push";
+    else;
+      docker build -t auth0blog/bang-bang .;
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker push auth0blog/bang-bang;
+    fi;
