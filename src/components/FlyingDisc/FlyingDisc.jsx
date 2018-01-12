@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DiscBase from './DiscBase';
+import DiscTop from './DiscTop';
 import Position from '../../utils/Position';
 
 class FlyingDisc extends Component {
@@ -27,13 +29,10 @@ class FlyingDisc extends Component {
 
   render() {
     return (
-      <ellipse
-        className="cannon-ball"
-        cx={this.props.position.x}
-        cy={this.props.position.y}
-        rx="20"
-        ry="20"
-      />
+      <g id="flying-disc">
+        <DiscBase position={this.props.position} />
+        <DiscTop position={this.props.position} />
+      </g>
     );
   }
 }
