@@ -1,15 +1,15 @@
-# Deploying Auth0 Generic Client on Digituz
+# Deploying Bang! Bang! on Digituz
 
 ## Cloning the Repository
 
 ```bash
-git clone https://github.com/brunokrebs/angular-auth0-generic-client ~/git/angular-auth0-generic-client
-cd ~/git/angular-auth0-generic-client
+git clone https://github.com/auth0-blog/bang-bang-react-game ~/git/bang-bang-react-game
+cd ~/git/bang-bang-react-game
 ```
 
 ## Creating Docker Instances
 
-First, we need to create a Docker network:
+First, if not already existent, we need to create a Docker network:
 
 ```bash
 DIGITUZ_NETWORK=digituz
@@ -17,10 +17,10 @@ DIGITUZ_NETWORK=digituz
 docker network create $DIGITUZ_NETWORK
 ```
 
-After that, we can bootstrap Auth0 Generic Client:
+After that, we can bootstrap Bang! Bang!:
 
 ```bash
-docker build -t angular-auth0 .
+docker build -t bang-bang .
 
-docker run --name angular-auth0 --network digituz -d angular-auth0
+docker run --name bang-bang --network digituz -d bang-bang
 ```
