@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   shootCannonBall() {
-    if (this.props.cannonBalls.length < 4) {
+    if (this.props.cannonBalls.length < 2) {
       this.props.shoot(this.props.angle);
     }
   }

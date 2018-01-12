@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
   moveDisc: (position, id, angle) => {
     setTimeout(() => {
       dispatch(move(position, id, angle));
-    }, 75);
+    }, 15);
   },
 });
 
