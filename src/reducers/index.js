@@ -1,4 +1,4 @@
-import {SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC} from '../actions';
+import {SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC, DESTROY_DISC} from '../actions';
 import Position from '../utils/Position';
 import { calculateAngle, calculateNextposition } from '../utils/formulas';
 
@@ -45,6 +45,12 @@ function moveMouse(state, action) {
 function moveBall(state, action) {
   const movingBalls = state.cannonBalls.filter(ball => (ball.id !== action.id));
   const movingBall = state.cannonBalls.find(ball => (ball.id === action.id));
+
+  if (!movingBall) {
+    // destroyed when hitting flying disc
+    return state;
+  }
+
   const { x, y } = movingBall.position;
   const { angle } = movingBall;
   movingBall.position = calculateNextposition(x, y, angle);
@@ -62,7 +68,7 @@ function moveBall(state, action) {
 
 function addFlyingDisc(state) {
   const { flyingDiscs } = state;
-  if (flyingDiscs.length === 4) return state;
+  if (flyingDiscs.length === 1) return state;
   const id = (new Date()).getTime();
   const predefinedPosition = Math.floor(Math.random() * 4);
   const discPosition = predefinedPositions[predefinedPosition];
@@ -80,6 +86,13 @@ function addFlyingDisc(state) {
 function moveDisc(state, action) {
   const movingDiscs = state.flyingDiscs.filter(disc => (disc.id !== action.id));
   const movingDisc = state.flyingDiscs.find(disc => (disc.id === action.id));
+
+  if (!movingDisc) {
+    // destroyed when hit by cannon ball
+    return state;
+  }
+
+
   const { x, y } = movingDisc.position;
   const { angle } = movingDisc;
   movingDisc.position = calculateNextposition(x, y, angle);
@@ -95,6 +108,23 @@ function moveDisc(state, action) {
   };
 }
 
+function destroyDiscs(state, action) {
+  const { objectsDestroyed } = action;
+
+  const discsDestroyed = objectsDestroyed.map(object => (object.discId));
+  const cannonBallsDestroyed = objectsDestroyed.map(object => (object.cannonBallId));
+
+  const flyingDiscs = state.flyingDiscs.filter(disc => (discsDestroyed.indexOf(disc.id) >= 0));
+  const cannonBalls = state.cannonBalls
+    .filter(ball => (cannonBallsDestroyed.indexOf(ball.id) >= 0));
+
+  return {
+    ...state,
+    flyingDiscs,
+    cannonBalls,
+  };
+}
+
 function reducer(state = initialState, action) {
   switch (action.type) {
     case SHOOT:
@@ -107,6 +137,8 @@ function reducer(state = initialState, action) {
       return moveDisc(state, action);
     case ADD_FLYING_DISC:
       return addFlyingDisc(state);
+    case DESTROY_DISC:
+      return destroyDiscs(state, action);
     default:
       return state;
   }

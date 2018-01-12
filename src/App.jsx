@@ -16,6 +16,7 @@ class App extends Component {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,36 @@ class App extends Component {
         self.shootCannonBall();
       }
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { cannonBalls, flyingDiscs } = nextProps;
+    const objectsDestroyed = [];
+    flyingDiscs.forEach((disc) => {
+      const rectA = {
+        x1: disc.position.x - 40,
+        y1: disc.position.y - 10,
+        x2: disc.position.x + 40,
+        y2: disc.position.y + 10,
+      };
+      cannonBalls.forEach((ball) => {
+        const rectB = {
+          x1: ball.position.x - 8,
+          y1: ball.position.y - 8,
+          x2: ball.position.x + 8,
+          y2: ball.position.y + 8,
+        };
+        if (rectA.x1 < rectB.x2 && rectA.x2 > rectB.x1 &&
+          rectA.y1 < rectB.y2 && rectA.y2 > rectB.y1) {
+          objectsDestroyed.push({
+            disc, ball,
+          });
+        }
+      });
+    });
+    if (objectsDestroyed.length > 0) {
+      this.props.destroyDiscs(objectsDestroyed);
+    }
   }
 
   trackMouse(event) {
@@ -97,6 +128,7 @@ App.propTypes = {
   })).isRequired,
   shoot: PropTypes.func.isRequired,
   createFlyingDisc: PropTypes.func.isRequired,
+  destroyDiscs: PropTypes.func.isRequired,
   moveMouse: PropTypes.func.isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
   angle: PropTypes.number.isRequired,

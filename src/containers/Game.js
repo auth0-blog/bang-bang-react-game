@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { shoot, moveMouse, addFlyingDisc } from '../actions';
+import { shoot, moveMouse, addFlyingDisc, destroyDiscs } from '../actions';
 import App from '../App';
 
 const mapStateToProps = state => ({
@@ -18,6 +18,9 @@ const mapDispatchToProps = dispatch => ({
   },
   createFlyingDisc: () => {
     dispatch(addFlyingDisc());
+  },
+  destroyDiscs: (objectsDestroyed) => {
+    dispatch(destroyDiscs(objectsDestroyed));
   },
 });
 
