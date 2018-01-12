@@ -39,7 +39,6 @@ class App extends Component {
         >
           <Sky />
           <Ground />
-          <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
           {this.props.cannonBalls.map(cannonBall => (
             <Trajectory
               key={cannonBall.id}
@@ -48,6 +47,7 @@ class App extends Component {
               angle={cannonBall.angle}
             />
           ))}
+          <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
           <VisualClues visible={showVisualClues} position={this.props.mousePosition} />
         </Canvas>
         <p>
