@@ -18,6 +18,11 @@ const Canvas = (props) => {
       onMouseMove={props.trackMouse}
       onClick={props.mouseClicked}
     >
+      <defs>
+        <filter id="shadow">
+          <feDropShadow dx="1" dy="1" stdDeviation="2" />
+        </filter>
+      </defs>
       {props.children}
     </svg>
   );

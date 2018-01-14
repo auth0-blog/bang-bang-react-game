@@ -11,6 +11,7 @@ import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
 import FlyingDiscMotion from './containers/FlyingDiscMotion';
 import checkCollisions from './utils/checkCollisions';
+import Heart from './components/Heart/Heart';
 
 class App extends Component {
   constructor(props) {
@@ -87,6 +88,9 @@ class App extends Component {
           ))}
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
           <VisualClues visible={showVisualClues} position={this.props.mousePosition} />
+          <Heart xAxis={-350} yAxis={40} />
+          <Heart xAxis={-280} yAxis={40} />
+          <Heart xAxis={-210} yAxis={40} />
         </Canvas>
         <p>
           Mouse X: {this.props.mousePosition.x};
