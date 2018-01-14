@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
 import Cannon from './components/Cannon/Cannon';
-import {checkCollision, getCanvasPosition} from './utils/formulas';
+import { getCanvasPosition } from './utils/formulas';
 import Sky from './components/Sky/Sky';
 import './App.css';
 import Trajectory from './containers/Trajectory';
 import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
 import FlyingDiscMotion from './containers/FlyingDiscMotion';
+import checkCollisions from './utils/checkCollisions';
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +22,6 @@ class App extends Component {
 
   componentDidMount() {
     const self = this;
-    setInterval(() => {
-      self.props.createFlyingDisc();
-    }, 1000);
     document.onkeypress = (event) => {
       if (event.keyCode === 32 || event.charCode === 32) {
         self.shootCannonBall();
@@ -32,29 +30,14 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const self = this;
+    if (nextProps.gameStarted && !this.props.gameStarted) {
+      setInterval(() => {
+        self.props.createFlyingDisc();
+      }, 1000);
+    }
     const { cannonBalls, flyingDiscs } = nextProps;
-    const objectsDestroyed = [];
-    flyingDiscs.forEach((disc) => {
-      const rectA = {
-        x1: disc.position.x - 40,
-        y1: disc.position.y - 10,
-        x2: disc.position.x + 40,
-        y2: disc.position.y + 10,
-      };
-      cannonBalls.forEach((ball) => {
-        const rectB = {
-          x1: ball.position.x - 8,
-          y1: ball.position.y - 8,
-          x2: ball.position.x + 8,
-          y2: ball.position.y + 8,
-        };
-        if (checkCollision(rectA, rectB)) {
-          objectsDestroyed.push({
-            disc, ball,
-          });
-        }
-      });
-    });
+    const objectsDestroyed = checkCollisions(cannonBalls, flyingDiscs);
     if (objectsDestroyed.length > 0) {
       this.props.destroyDiscs(objectsDestroyed);
     }
@@ -66,6 +49,7 @@ class App extends Component {
   }
 
   shootCannonBall() {
+    if (!this.props.gameStarted) return;
     if (this.props.cannonBalls.length < 2) {
       this.props.shoot(this.props.angle);
     }
@@ -109,6 +93,7 @@ class App extends Component {
           Mouse Y: {this.props.mousePosition.y};
           Angle: {this.props.angle};
         </p>
+        <button onClick={this.props.startGame}>Start Game</button>
       </div>
     );
   }
@@ -131,6 +116,8 @@ App.propTypes = {
   moveMouse: PropTypes.func.isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
   angle: PropTypes.number.isRequired,
+  gameStarted: PropTypes.bool.isRequired,
+  startGame: PropTypes.func.isRequired,
 };
 
 export default App;

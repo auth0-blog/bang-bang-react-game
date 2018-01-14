@@ -1,4 +1,4 @@
-import { SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC, DESTROY_DISC } from '../actions';
+import { SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISC, ADD_FLYING_DISC, DESTROY_DISC, START_GAME } from '../actions';
 import Position from '../utils/Position';
 import trackMouse from './trackMouse';
 import shoot from './shoot';
@@ -6,10 +6,13 @@ import moveBall from './moveBall';
 import destroyDiscs from './destroyDiscs';
 import moveDisc from './moveDisc';
 import addFlyingDisc from './addFlyingDisc';
+import startGame from './startGame';
 
 const initialState = {
   cannonBalls: [],
   flyingDiscs: [],
+  lifes: 4,
+  gameStarted: false,
   mousePosition: new Position(0, 0),
   angle: 45,
 };
@@ -28,6 +31,8 @@ function reducer(state = initialState, action) {
       return addFlyingDisc(state);
     case DESTROY_DISC:
       return destroyDiscs(state, action);
+    case START_GAME:
+      return startGame(state);
     default:
       return state;
   }

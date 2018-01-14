@@ -9,7 +9,6 @@ function moveDisc(state, action) {
     return state;
   }
 
-
   const { x, y } = movingDisc.position;
   const { angle } = movingDisc;
   movingDisc.position = calculateNextposition(x, y, angle);
