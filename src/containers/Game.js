@@ -3,26 +3,26 @@ import { shoot, moveMouse, addFlyingDisc, destroyDiscs, startGame } from '../act
 import App from '../App';
 
 const mapStateToProps = state => ({
-  cannonBalls: state.cannonBalls,
-  mousePosition: state.mousePosition,
   angle: state.angle,
+  cannonBalls: state.cannonBalls,
   flyingDiscs: state.flyingDiscs,
   gameStarted: state.gameStarted,
   lifes: state.lifes,
+  mousePosition: state.mousePosition,
 });
 
 const mapDispatchToProps = dispatch => ({
-  shoot: (angle) => {
-    dispatch(shoot(angle));
-  },
-  moveMouse: (position) => {
-    dispatch(moveMouse(position));
-  },
   createFlyingDisc: () => {
     dispatch(addFlyingDisc());
   },
   destroyDiscs: (objectsDestroyed) => {
     dispatch(destroyDiscs(objectsDestroyed));
+  },
+  moveMouse: (position) => {
+    dispatch(moveMouse(position));
+  },
+  shoot: (angle) => {
+    dispatch(shoot(angle));
   },
   startGame: () => {
     dispatch(startGame());

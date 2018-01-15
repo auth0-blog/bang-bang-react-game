@@ -104,24 +104,24 @@ class App extends Component {
 }
 
 App.propTypes = {
+  angle: PropTypes.number.isRequired,
   cannonBalls: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
     angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
+  createFlyingDisc: PropTypes.func.isRequired,
+  destroyDiscs: PropTypes.func.isRequired,
   flyingDiscs: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
     angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
-  shoot: PropTypes.func.isRequired,
-  createFlyingDisc: PropTypes.func.isRequired,
-  destroyDiscs: PropTypes.func.isRequired,
-  moveMouse: PropTypes.func.isRequired,
-  mousePosition: PropTypes.instanceOf(Position).isRequired,
-  lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  angle: PropTypes.number.isRequired,
   gameStarted: PropTypes.bool.isRequired,
+  lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  mousePosition: PropTypes.instanceOf(Position).isRequired,
+  moveMouse: PropTypes.func.isRequired,
+  shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };
 
