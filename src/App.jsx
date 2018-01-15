@@ -6,11 +6,11 @@ import Cannon from './components/Cannon/Cannon';
 import { getCanvasPosition } from './utils/formulas';
 import Sky from './components/Sky/Sky';
 import './App.css';
-import Trajectory from './containers/Trajectory';
 import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
-import FlyingDiscMotion from './containers/FlyingDiscMotion';
 import Heart from './components/Heart/Heart';
+import FlyingDisc from './components/FlyingDisc/FlyingDisc';
+import CannonBall from './components/CannonBall/CannonBall';
 
 class App extends Component {
   constructor(props) {
@@ -65,19 +65,15 @@ class App extends Component {
           <Sky />
           <Ground />
           {this.props.flyingDiscs.map(flyingDisc => (
-            <FlyingDiscMotion
+            <FlyingDisc
               key={flyingDisc.id}
-              id={flyingDisc.id}
               position={flyingDisc.position}
-              angle={flyingDisc.angle}
             />
           ))}
           {this.props.cannonBalls.map(cannonBall => (
-            <Trajectory
+            <CannonBall
               key={cannonBall.id}
-              id={cannonBall.id}
               position={cannonBall.position}
-              angle={cannonBall.angle}
             />
           ))}
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
