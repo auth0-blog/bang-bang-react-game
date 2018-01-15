@@ -1,5 +1,5 @@
 import Position from '../utils/Position';
-import moveDiscs from './moveDiscs';
+import moveObjects from './moveObjects';
 
 const predefinedPositions = [
   -300,
@@ -19,7 +19,7 @@ function createAndMove(state) {
     angle: 180,
     id,
   };
-  return moveDiscs({
+  return moveObjects({
     ...state,
     lastDiscCreatedAt: new Date(),
     flyingDiscs: [...flyingDiscs, newFlyingDisc],

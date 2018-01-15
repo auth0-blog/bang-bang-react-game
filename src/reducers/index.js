@@ -1,10 +1,8 @@
-import { SHOOT, MOVE_MOUSE, MOVE_BALL, MOVE_DISCS, CREATE_AND_MOVE, DESTROY_DISC, START_GAME } from '../actions';
+import { SHOOT, MOVE_MOUSE, CREATE_AND_MOVE, START_GAME, MOVE_OBJECTS } from '../actions';
 import Position from '../utils/Position';
 import trackMouse from './trackMouse';
 import shoot from './shoot';
-import moveBall from './moveBall';
-import destroyDiscs from './destroyDiscs';
-import moveDiscs from './moveDiscs';
+import moveObjects from './moveObjects';
 import createAndMove from './createAndMove';
 import startGame from './startGame';
 
@@ -24,14 +22,10 @@ function reducer(state = initialState, action) {
       return shoot(state, action);
     case MOVE_MOUSE:
       return trackMouse(state, action);
-    case MOVE_BALL:
-      return moveBall(state, action);
-    case MOVE_DISCS:
-      return moveDiscs(state, action);
+    case MOVE_OBJECTS:
+      return moveObjects(state);
     case CREATE_AND_MOVE:
       return createAndMove(state);
-    case DESTROY_DISC:
-      return destroyDiscs(state, action);
     case START_GAME:
       return startGame(state);
     default:

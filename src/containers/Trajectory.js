@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { moveBall as move } from '../actions';
 import CannonBall from '../components/CannonBall/CannonBall';
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,17 +9,6 @@ const mapStateToProps = (state, ownProps) => {
   return { position, angle };
 };
 
-const mapDispatchToProps = dispatch => ({
-  moveBall: (position, id, angle) => {
-    setTimeout(() => {
-      dispatch(move(position, id, angle));
-    });
-  },
-});
-
-const Trajectory = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CannonBall);
+const Trajectory = connect(mapStateToProps)(CannonBall);
 
 export default Trajectory;

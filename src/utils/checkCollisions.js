@@ -2,23 +2,24 @@ import { checkCollision } from './formulas';
 
 const checkCollisions = (cannonBalls, flyingDiscs) => {
   const objectsDestroyed = [];
-  flyingDiscs.forEach((disc) => {
+  flyingDiscs.forEach((flyingDisc) => {
     const rectA = {
-      x1: disc.position.x - 40,
-      y1: disc.position.y - 10,
-      x2: disc.position.x + 40,
-      y2: disc.position.y + 10,
+      x1: flyingDisc.position.x - 40,
+      y1: flyingDisc.position.y - 10,
+      x2: flyingDisc.position.x + 40,
+      y2: flyingDisc.position.y + 10,
     };
-    cannonBalls.forEach((ball) => {
+    cannonBalls.forEach((cannonBall) => {
       const rectB = {
-        x1: ball.position.x - 8,
-        y1: ball.position.y - 8,
-        x2: ball.position.x + 8,
-        y2: ball.position.y + 8,
+        x1: cannonBall.position.x - 8,
+        y1: cannonBall.position.y - 8,
+        x2: cannonBall.position.x + 8,
+        y2: cannonBall.position.y + 8,
       };
       if (checkCollision(rectA, rectB)) {
         objectsDestroyed.push({
-          disc, ball,
+          cannonBallId: cannonBall.id,
+          flyingDiscId: flyingDisc.id,
         });
       }
     });

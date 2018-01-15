@@ -10,7 +10,6 @@ import Trajectory from './containers/Trajectory';
 import Position from './utils/Position';
 import VisualClues from './components/VisualClues/VisualClues';
 import FlyingDiscMotion from './containers/FlyingDiscMotion';
-import checkCollisions from './utils/checkCollisions';
 import Heart from './components/Heart/Heart';
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +28,7 @@ class App extends Component {
       if (deltaDiscCreation > 1000) {
         self.props.createAndMove();
       } else {
-        self.props.moveDiscs();
+        self.props.moveObjects();
       }
     }, 10);
     document.onkeypress = (event) => {
@@ -38,14 +36,6 @@ class App extends Component {
         self.shootCannonBall();
       }
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { cannonBalls, flyingDiscs } = nextProps;
-    const objectsDestroyed = checkCollisions(cannonBalls, flyingDiscs);
-    if (objectsDestroyed.length > 0) {
-      this.props.destroyDiscs(objectsDestroyed);
-    }
   }
 
   trackMouse(event) {
@@ -115,7 +105,6 @@ App.propTypes = {
     id: PropTypes.number.isRequired,
   })).isRequired,
   createAndMove: PropTypes.func.isRequired,
-  destroyDiscs: PropTypes.func.isRequired,
   flyingDiscs: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
     angle: PropTypes.number.isRequired,
@@ -125,7 +114,7 @@ App.propTypes = {
   lastDiscCreatedAt: PropTypes.instanceOf(Date).isRequired,
   lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
-  moveDiscs: PropTypes.func.isRequired,
+  moveObjects: PropTypes.func.isRequired,
   moveMouse: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
