@@ -11,7 +11,7 @@ const moveBalls = cannonBalls => (
       const { angle } = cannonBall;
       return {
         ...cannonBall,
-        position: calculateNextposition(x, y, angle),
+        position: calculateNextposition(x, y, angle, 5),
       };
     })
 );

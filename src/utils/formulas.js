@@ -31,11 +31,11 @@ const calculateAngle = (x1, y1, x2, y2) => {
   return radiansToDegrees(Math.atan(quotient)) * -1;
 };
 
-const calculateNextposition = (x, y, angle) => {
+const calculateNextposition = (x, y, angle, divisor = 10) => {
   const realAngle = (angle * -1) + 90;
-  const newX = radiansToDegrees(Math.cos(degreesToRadian(realAngle))) / 10;
-  const newY = radiansToDegrees(Math.sin(degreesToRadian(realAngle))) / 10;
-  return new Position(x + newX, y - newY);
+  const stepsX = radiansToDegrees(Math.cos(degreesToRadian(realAngle))) / divisor;
+  const stepsY = radiansToDegrees(Math.sin(degreesToRadian(realAngle))) / divisor;
+  return new Position(x + stepsX, y - stepsY);
 };
 
 const pathFromBezierCurve = (cubicBezierCurve) => {
