@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   angle: state.angle,
   flyingDiscs: state.flyingDiscs,
   gameStarted: state.gameStarted,
+  lifes: state.lifes,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -11,7 +11,7 @@ import startGame from './startGame';
 const initialState = {
   cannonBalls: [],
   flyingDiscs: [],
-  lifes: 4,
+  lifes: [0, 1, 2],
   gameStarted: false,
   mousePosition: new Position(0, 0),
   angle: 45,

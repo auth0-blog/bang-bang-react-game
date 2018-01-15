@@ -14,13 +14,20 @@ function moveDisc(state, action) {
   movingDisc.position = calculateNextposition(x, y, angle);
 
   const flyingDiscs = [...movingDiscs];
+  let gameStarted = true;
+  let lifes = [...state.lifes];
   if (movingDisc.position.y < 100) {
     flyingDiscs.push(movingDisc);
+  } else {
+    lifes.pop();
+    gameStarted = lifes.length > 0;
   }
 
   return {
     ...state,
     flyingDiscs,
+    gameStarted,
+    lifes,
   };
 }
 
