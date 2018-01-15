@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Canvas.css';
 
 const Canvas = (props) => {
   const viewBox = '-400, -700, 800, 800';
