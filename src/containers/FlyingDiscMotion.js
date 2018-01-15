@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import FlyingDisc from '../components/FlyingDisc/FlyingDisc';
-import { moveDisc as move } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { flyingDiscs } = state;
@@ -10,17 +9,6 @@ const mapStateToProps = (state, ownProps) => {
   return { position, angle };
 };
 
-const mapDispatchToProps = dispatch => ({
-  moveDisc: (position, id, angle) => {
-    setTimeout(() => {
-      dispatch(move(position, id, angle));
-    }, 15);
-  },
-});
-
-const FlywingDiscMotion = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(FlyingDisc);
+const FlywingDiscMotion = connect(mapStateToProps)(FlyingDisc);
 
 export default FlywingDiscMotion;

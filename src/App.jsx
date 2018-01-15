@@ -23,6 +23,16 @@ class App extends Component {
 
   componentDidMount() {
     const self = this;
+    setInterval(() => {
+      if (!self.props.gameStarted) return;
+
+      const deltaDiscCreation = (new Date()).getTime() - self.props.lastDiscCreatedAt;
+      if (deltaDiscCreation > 1000) {
+        self.props.createAndMove();
+      } else {
+        self.props.moveDiscs();
+      }
+    }, 10);
     document.onkeypress = (event) => {
       if (event.keyCode === 32 || event.charCode === 32) {
         self.shootCannonBall();
@@ -31,12 +41,6 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const self = this;
-    if (nextProps.gameStarted && !this.props.gameStarted) {
-      setInterval(() => {
-        self.props.createFlyingDisc();
-      }, 1000);
-    }
     const { cannonBalls, flyingDiscs } = nextProps;
     const objectsDestroyed = checkCollisions(cannonBalls, flyingDiscs);
     if (objectsDestroyed.length > 0) {
@@ -110,7 +114,7 @@ App.propTypes = {
     angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
-  createFlyingDisc: PropTypes.func.isRequired,
+  createAndMove: PropTypes.func.isRequired,
   destroyDiscs: PropTypes.func.isRequired,
   flyingDiscs: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
@@ -118,8 +122,10 @@ App.propTypes = {
     id: PropTypes.number.isRequired,
   })).isRequired,
   gameStarted: PropTypes.bool.isRequired,
+  lastDiscCreatedAt: PropTypes.instanceOf(Date).isRequired,
   lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
+  moveDiscs: PropTypes.func.isRequired,
   moveMouse: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,

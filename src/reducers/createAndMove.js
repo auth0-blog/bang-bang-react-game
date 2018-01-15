@@ -1,4 +1,5 @@
 import Position from '../utils/Position';
+import moveDiscs from './moveDiscs';
 
 const predefinedPositions = [
   -300,
@@ -7,7 +8,7 @@ const predefinedPositions = [
   300,
 ];
 
-function addFlyingDisc(state) {
+function createAndMove(state) {
   const { flyingDiscs } = state;
   if (flyingDiscs.length === 4) return state;
   const id = (new Date()).getTime();
@@ -18,10 +19,11 @@ function addFlyingDisc(state) {
     angle: 180,
     id,
   };
-  return {
+  return moveDiscs({
     ...state,
+    lastDiscCreatedAt: new Date(),
     flyingDiscs: [...flyingDiscs, newFlyingDisc],
-  };
+  });
 }
 
-export default addFlyingDisc;
+export default createAndMove;

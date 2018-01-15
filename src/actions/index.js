@@ -1,9 +1,9 @@
 export const SHOOT = 'SHOOT';
 export const MOVE_MOUSE = 'MOVE_MOUSE';
 export const MOVE_BALL = 'MOVE_BALL';
-export const MOVE_DISC = 'MOVE_DISC';
+export const MOVE_DISCS = 'MOVE_DISCS';
 export const DESTROY_DISC = 'DESTROY_DISC';
-export const ADD_FLYING_DISC = 'ADD_FLYING_DISC';
+export const CREATE_AND_MOVE = 'CREATE_AND_MOVE';
 export const START_GAME = 'START_GAME';
 
 export const shoot = angle => ({
@@ -22,14 +22,12 @@ export const moveBall = (position, id) => ({
   id,
 });
 
-export const addFlyingDisc = () => ({
-  type: ADD_FLYING_DISC,
+export const createAndMove = () => ({
+  type: CREATE_AND_MOVE,
 });
 
-export const moveDisc = (position, id) => ({
-  type: MOVE_DISC,
-  position,
-  id,
+export const moveDiscs = () => ({
+  type: MOVE_DISCS,
 });
 
 export const destroyDiscs = objectsDestroyed => ({
