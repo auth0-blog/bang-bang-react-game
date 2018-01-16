@@ -11,6 +11,7 @@ import VisualClues from './components/VisualClues/VisualClues';
 import Heart from './components/Heart/Heart';
 import FlyingDisc from './components/FlyingDisc/FlyingDisc';
 import CannonBall from './components/CannonBall/CannonBall';
+import StartGame from './components/StartGame/StartGame';
 
 class App extends Component {
   constructor(props) {
@@ -87,13 +88,8 @@ class App extends Component {
           {this.props.lives.map(position => (
             <Heart xAxis={-210 - (position * 70)} yAxis={40} key={position} />
           ))}
+          {!this.props.gameStarted && <StartGame onClick={this.props.startGame} />}
         </Canvas>
-        <p>
-          Mouse X: {this.props.canvasMousePosition.x};
-          Mouse Y: {this.props.canvasMousePosition.y};
-          Angle: {this.props.angle};
-        </p>
-        <button onClick={this.props.startGame}>Start Game</button>
       </div>
     );
   }
