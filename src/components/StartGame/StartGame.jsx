@@ -24,7 +24,7 @@ const StartGame = (props) => {
         ry={10}
         onClick={props.onClick}
       />
-      <text x="-95" y="-198" style={textStyle} onClick={props.onClick}>
+      <text textAnchor="middle" x="0" y="-198" style={textStyle} onClick={props.onClick}>
         New Game
       </text>
     </g>
