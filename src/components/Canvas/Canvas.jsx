@@ -5,8 +5,8 @@ import { gameHeight, gameLeftmostXPoint, gameUppermostPoint, gameWidth } from '.
 const Canvas = (props) => {
   const viewBox = [gameLeftmostXPoint, gameUppermostPoint, gameWidth, gameHeight];
   const style = {
-    width: '400px',
-    height: '400px',
+    maxWidth: '400px',
+    height: 'auto',
   };
   return (
     <svg
