@@ -44,10 +44,11 @@ class App extends Component {
     this.mousePosition = mousePosition;
   }
 
-  shootCannonBall() {
+  shootCannonBall(event) {
     if (!this.props.gameStarted) return;
+    this.trackMouse(event);
     if (this.props.cannonBalls.length < 2) {
-      this.props.shoot(this.props.angle);
+      this.props.shoot(this.mousePosition);
     }
   }
 

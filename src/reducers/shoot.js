@@ -1,8 +1,9 @@
 import Position from '../utils/Position';
+import trackMouse from './trackMouse';
 
 function shoot(state, action) {
-  const { cannonBalls } = state;
-  const { angle } = action;
+  const newState = trackMouse(state, action);
+  const { cannonBalls, angle } = newState;
   const id = (new Date()).getTime();
   const cannonBall = {
     position: new Position(0, 0),

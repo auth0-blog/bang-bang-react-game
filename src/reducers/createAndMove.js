@@ -15,7 +15,7 @@ function createAndMove(state, action) {
   const predefinedPosition = Math.floor(Math.random() * 4);
   const discPosition = predefinedPositions[predefinedPosition];
   const newFlyingDisc = {
-    position: new Position(discPosition, -700),
+    position: new Position(discPosition, -600),
     angle: 180,
     id,
   };

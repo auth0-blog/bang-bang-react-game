@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch => ({
   moveObjects: (mousePosition) => {
     dispatch(moveObjects(mousePosition));
   },
-  shoot: (angle) => {
-    dispatch(shoot(angle));
+  shoot: (mousePosition) => {
+    dispatch(shoot(mousePosition));
   },
   startGame: () => {
     dispatch(startGame());
