@@ -26,29 +26,33 @@ class App extends Component {
 
       const deltaDiscCreation = (new Date()).getTime() - self.props.lastDiscCreatedAt;
       if (deltaDiscCreation > 1000) {
-        self.props.createAndMove(self.mousePosition);
+        self.props.createAndMove(self.canvasMousePosition);
       } else {
-        self.props.moveObjects(self.mousePosition);
+        self.props.moveObjects(self.canvasMousePosition);
       }
     }, 10);
     document.onkeypress = (event) => {
       if (event.keyCode === 32 || event.charCode === 32) {
-        self.shootCannonBall();
+        self.shootCannonBall({
+          clientX: self.mousePosition.x,
+          clientY: self.mousePosition.y,
+        });
       }
     };
   }
 
   trackMouse(event) {
-    const mousePosition = getCanvasPosition('my-super-canvas', event);
+    const canvasMousePosition = getCanvasPosition('my-super-canvas', event);
     // am I cheating?
-    this.mousePosition = mousePosition;
+    this.mousePosition = new Position(event.clientX, event.clientY);
+    this.canvasMousePosition = canvasMousePosition;
   }
 
   shootCannonBall(event) {
     if (!this.props.gameStarted) return;
     this.trackMouse(event);
     if (this.props.cannonBalls.length < 2) {
-      this.props.shoot(this.mousePosition);
+      this.props.shoot(this.canvasMousePosition);
     }
   }
 
@@ -79,14 +83,14 @@ class App extends Component {
             />
           ))}
           <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
-          <VisualClues visible={showVisualClues} position={this.props.mousePosition} />
+          <VisualClues visible={showVisualClues} position={this.props.canvasMousePosition} />
           {this.props.lifes.map(position => (
             <Heart xAxis={-210 - (position * 70)} yAxis={40} key={position} />
           ))}
         </Canvas>
         <p>
-          Mouse X: {this.props.mousePosition.x};
-          Mouse Y: {this.props.mousePosition.y};
+          Mouse X: {this.props.canvasMousePosition.x};
+          Mouse Y: {this.props.canvasMousePosition.y};
           Angle: {this.props.angle};
         </p>
         <button onClick={this.props.startGame}>Start Game</button>
@@ -111,7 +115,7 @@ App.propTypes = {
   gameStarted: PropTypes.bool.isRequired,
   lastDiscCreatedAt: PropTypes.instanceOf(Date).isRequired,
   lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  mousePosition: PropTypes.instanceOf(Position).isRequired,
+  canvasMousePosition: PropTypes.instanceOf(Position).isRequired,
   moveObjects: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,

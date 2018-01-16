@@ -13,6 +13,7 @@ const initialState = {
   lastDiscCreatedAt: new Date(),
   lifes: [0, 1, 2],
   mousePosition: new Position(0, 0),
+  canvasMousePosition: new Position(0, 0),
 };
 
 function reducer(state = initialState, action) {

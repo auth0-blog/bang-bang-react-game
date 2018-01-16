@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   gameStarted: state.gameStarted,
   lastDiscCreatedAt: state.lastDiscCreatedAt,
   lifes: state.lifes,
-  mousePosition: state.mousePosition,
+  canvasMousePosition: state.canvasMousePosition,
 });
 
 const mapDispatchToProps = dispatch => ({
