@@ -10,7 +10,7 @@ const predefinedPositions = [
 
 function createAndMove(state, action) {
   const { flyingDiscs } = state;
-  if (flyingDiscs.length === 4) return state;
+  if (flyingDiscs.length === 4) return moveObjects(state, action);
   const id = (new Date()).getTime();
   const predefinedPosition = Math.floor(Math.random() * 4);
   const discPosition = predefinedPositions[predefinedPosition];
