@@ -4,7 +4,10 @@ import trackMouse from './trackMouse';
 
 function moveObjects(state, action) {
   let cannonBalls = moveBalls(state.cannonBalls);
-  let { flyingDiscs } = state;
+  const now = (new Date()).getTime();
+  let flyingDiscs = state.flyingDiscs.filter(disc => (
+    (now - disc.createdAt) < 4000
+  ));
 
   const lostLife = state.flyingDiscs.length !== flyingDiscs.length;
   const lifes = [...state.lifes];
