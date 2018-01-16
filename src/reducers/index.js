@@ -25,7 +25,10 @@ function reducer(state = initialState, action) {
     case CREATE_AND_MOVE:
       return createAndMove(state, action);
     case START_GAME:
-      return startGame(state);
+      return startGame({
+        ...state,
+        ...initialState,
+      });
     default:
       return state;
   }
