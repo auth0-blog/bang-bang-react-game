@@ -3,11 +3,16 @@ import { checkCollision } from './formulas';
 const checkCollisions = (cannonBalls, flyingDiscs) => {
   const objectsDestroyed = [];
   flyingDiscs.forEach((flyingDisc) => {
+    const currentLifeTime = (new Date()).getTime() - flyingDisc.createdAt;
+    const calculatedPosition = {
+      x: flyingDisc.position.x,
+      y: flyingDisc.position.y + ((currentLifeTime / 4000) * 700),
+    };
     const rectA = {
-      x1: flyingDisc.calculatedPosition.x - 40,
-      y1: flyingDisc.calculatedPosition.y - 10,
-      x2: flyingDisc.calculatedPosition.x + 40,
-      y2: flyingDisc.calculatedPosition.y + 10,
+      x1: calculatedPosition.x - 40,
+      y1: calculatedPosition.y - 10,
+      x2: calculatedPosition.x + 40,
+      y2: calculatedPosition.y + 10,
     };
     cannonBalls.forEach((cannonBall) => {
       const rectB = {

@@ -1,5 +1,5 @@
 g.flying-disc {
-  animation: move-down 40s linear;
+  animation: move-down 4s linear;
 }
 
 @keyframes move-down {

@@ -1,11 +1,10 @@
 import moveBalls from './moveBalls';
-import moveDiscs from './moveDiscs';
 import checkCollisions from '../utils/checkCollisions';
 import trackMouse from './trackMouse';
 
 function moveObjects(state, action) {
   let cannonBalls = moveBalls(state.cannonBalls);
-  let flyingDiscs = moveDiscs(state.flyingDiscs);
+  let { flyingDiscs } = state;
 
   const lostLife = state.flyingDiscs.length !== flyingDiscs.length;
   const lifes = [...state.lifes];
