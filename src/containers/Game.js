@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   flyingDiscs: state.flyingDiscs,
   gameStarted: state.gameStarted,
   lastDiscCreatedAt: state.lastDiscCreatedAt,
-  lifes: state.lifes,
+  lives: state.lives,
   canvasMousePosition: state.canvasMousePosition,
 });
 

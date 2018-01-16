@@ -10,9 +10,9 @@ function moveObjects(state, action) {
   ));
 
   const lostLife = state.flyingDiscs.length !== flyingDiscs.length;
-  const lifes = [...state.lifes];
+  const lives = [...state.lives];
   if (lostLife) {
-    lifes.pop();
+    lives.pop();
   }
 
   const objectsDestroyed = checkCollisions(cannonBalls, flyingDiscs);
@@ -22,7 +22,7 @@ function moveObjects(state, action) {
   cannonBalls = cannonBalls.filter(cannonBall => (cannonBallsDestroyed.indexOf(cannonBall.id)));
   flyingDiscs = flyingDiscs.filter(flyingDisc => (flyingDiscsDestroyed.indexOf(flyingDisc.id)));
 
-  const gameStarted = lifes.length > 0;
+  const gameStarted = lives.length > 0;
   if (!gameStarted) {
     flyingDiscs = [];
     cannonBalls = [];
@@ -33,7 +33,7 @@ function moveObjects(state, action) {
     cannonBalls,
     flyingDiscs,
     gameStarted,
-    lifes,
+    lives,
   }, action);
 }
 
