@@ -5,14 +5,12 @@ import CannonPipe from './CannonPipe/CannonPipe';
 
 const Cannon = props => (
   <g id="cannon">
-    <CannonPipe xAxis={props.xAxis} yAxis={props.yAxis} rotation={props.rotation} />
-    <CannonBase xAxis={props.xAxis} yAxis={props.yAxis} />
+    <CannonPipe xAxis={0} yAxis={0} rotation={props.rotation} />
+    <CannonBase xAxis={0} yAxis={0} />
   </g>
 );
 
 Cannon.propTypes = {
-  xAxis: PropTypes.number.isRequired,
-  yAxis: PropTypes.number.isRequired,
   rotation: PropTypes.number.isRequired,
 };
 

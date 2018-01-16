@@ -12,6 +12,12 @@ import Heart from './components/Heart/Heart';
 import FlyingDisc from './components/FlyingDisc/FlyingDisc';
 import CannonBall from './components/CannonBall/CannonBall';
 import StartGame from './components/StartGame/StartGame';
+import {
+  heartAxisY,
+  heartInitialAxisX, heartWidth,
+  intervalBetweenDiscCreation, intervelBetweenRefreshes,
+  maximumSimultaneousShots, spaceKeyId,
+} from './utils/constants';
 
 class App extends Component {
   constructor(props) {
@@ -26,14 +32,14 @@ class App extends Component {
       if (!self.props.gameStarted) return;
 
       const deltaDiscCreation = (new Date()).getTime() - self.props.lastDiscCreatedAt;
-      if (deltaDiscCreation > 1000) {
+      if (deltaDiscCreation > intervalBetweenDiscCreation) {
         self.props.createAndMove(self.canvasMousePosition);
       } else {
         self.props.moveObjects(self.canvasMousePosition);
       }
-    }, 10);
+    }, intervelBetweenRefreshes);
     document.onkeypress = (event) => {
-      if (event.keyCode === 32 || event.charCode === 32) {
+      if (event.keyCode === spaceKeyId || event.charCode === spaceKeyId) {
         self.shootCannonBall({
           clientX: self.mousePosition.x,
           clientY: self.mousePosition.y,
@@ -52,17 +58,13 @@ class App extends Component {
   shootCannonBall(event) {
     if (!this.props.gameStarted) return;
     this.trackMouse(event);
-    if (this.props.cannonBalls.length < 2) {
+    if (this.props.cannonBalls.length < maximumSimultaneousShots) {
       this.props.shoot(this.canvasMousePosition);
     }
   }
 
   render() {
     const showVisualClues = false;
-    const firstCannonAxis = {
-      x: 0,
-      y: 0,
-    };
     return (
       <div>
         <Canvas
@@ -83,10 +85,14 @@ class App extends Component {
               position={cannonBall.position}
             />
           ))}
-          <Cannon xAxis={firstCannonAxis.x} yAxis={firstCannonAxis.y} rotation={this.props.angle} />
+          <Cannon rotation={this.props.angle} />
           <VisualClues visible={showVisualClues} position={this.props.canvasMousePosition} />
           {this.props.lives.map(position => (
-            <Heart xAxis={-210 - (position * 70)} yAxis={40} key={position} />
+            <Heart
+              xAxis={heartInitialAxisX - (position * heartWidth)}
+              yAxis={heartAxisY}
+              key={position}
+            />
           ))}
           {!this.props.gameStarted && <StartGame onClick={this.props.startGame} />}
         </Canvas>
