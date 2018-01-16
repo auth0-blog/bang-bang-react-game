@@ -1,23 +1,20 @@
 import Position from '../utils/Position';
 import moveObjects from './moveObjects';
-
-const predefinedPositions = [
-  -300,
-  -150,
-  150,
-  300,
-];
+import { flyingDiscsMovementAngle, flyingDiscsStarterAxisY, flyingDiscsStarterPositions } from '../utils/constants';
 
 function createAndMove(state, action) {
   const { flyingDiscs } = state;
-  if (flyingDiscs.length === 4) return moveObjects(state, action);
+  const positionsCount = flyingDiscsStarterPositions.length;
+
+  if (flyingDiscs.length === positionsCount) return moveObjects(state, action);
+
   const id = (new Date()).getTime();
-  const predefinedPosition = Math.floor(Math.random() * 4);
-  const discPosition = predefinedPositions[predefinedPosition];
+  const predefinedPosition = Math.floor(Math.random() * positionsCount);
+  const discPosition = flyingDiscsStarterPositions[predefinedPosition];
   const newFlyingDisc = {
-    position: new Position(discPosition, -600),
+    position: new Position(discPosition, flyingDiscsStarterAxisY),
     createdAt: (new Date()).getTime(),
-    angle: 180,
+    angle: flyingDiscsMovementAngle,
     id,
   };
   return moveObjects({
