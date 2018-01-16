@@ -4,10 +4,10 @@ const checkCollisions = (cannonBalls, flyingDiscs) => {
   const objectsDestroyed = [];
   flyingDiscs.forEach((flyingDisc) => {
     const rectA = {
-      x1: flyingDisc.position.x - 40,
-      y1: flyingDisc.position.y - 10,
-      x2: flyingDisc.position.x + 40,
-      y2: flyingDisc.position.y + 10,
+      x1: flyingDisc.calculatedPosition.x - 40,
+      y1: flyingDisc.calculatedPosition.y - 10,
+      x2: flyingDisc.calculatedPosition.x + 40,
+      y2: flyingDisc.calculatedPosition.y + 10,
     };
     cannonBalls.forEach((cannonBall) => {
       const rectB = {
