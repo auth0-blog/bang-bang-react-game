@@ -12,6 +12,14 @@ export const flyingDiscsStarterAxisY = -700;
 // discs will move down
 export const flyingDiscsMovementAngle = 180;
 
+// used to define canvas width and to calculate other game properties
+export const gameHeight = 800;
+export const gameWidth = 800;
+export const gameRightmostXPoint = gameWidth / 2;
+export const gameLeftmostXPoint = -(gameRightmostXPoint);
+export const gameLowermostPoint = 100; // positive means down the Y axis
+export const gameUppermostPoint = gameLowermostPoint - gameHeight; // above Y axis
+
 // this is the position, in the Y axis, where hearts will appear
 export const heartAxisY = 40;
 

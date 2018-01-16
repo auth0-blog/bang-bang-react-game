@@ -1,4 +1,5 @@
 import React from 'react';
+import { gameLeftmostXPoint, gameLowermostPoint, gameRightmostXPoint, gameWidth } from '../../utils/constants';
 
 const Ground = () => {
   const groundStyle = {
@@ -14,15 +15,15 @@ const Ground = () => {
         id="ground-2"
         data-name="ground"
         style={groundStyle}
-        x="-400"
-        y="0"
-        width="800"
-        height="100"
+        x={gameLeftmostXPoint}
+        y={0}
+        width={gameWidth}
+        height={gameLowermostPoint}
       />
       <line
-        x1={-400}
+        x1={gameLeftmostXPoint}
         y1={0}
-        x2={400}
+        x2={gameRightmostXPoint}
         y2={0}
         style={division}
       />
