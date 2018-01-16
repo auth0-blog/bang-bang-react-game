@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Position from '../../utils/Position';
+import {gameLeftmostXPoint, gameRightmostXPoint, gameUppermostPoint} from "../../utils/constants";
 
 const VisualClues = (props) => {
-  if (!props.visible) return null;
+  if (!props.visible || !props.position) return null;
 
   const lineStyle = {
     stroke: 'black',
@@ -12,17 +13,17 @@ const VisualClues = (props) => {
   return (
     <g>
       <line
-        x1={-400}
+        x1={gameLeftmostXPoint}
         y1={0}
-        x2={400}
+        x2={gameRightmostXPoint}
         y2={0}
         style={lineStyle}
       />
       <line
         x1={0}
-        y1={-800}
+        y1={gameUppermostPoint}
         x2={0}
-        y2={400}
+        y2={gameRightmostXPoint}
         style={lineStyle}
       />
       <line

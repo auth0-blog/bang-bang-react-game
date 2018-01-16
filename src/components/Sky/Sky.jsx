@@ -1,4 +1,5 @@
 import React from 'react';
+import { gameHeight, gameLeftmostXPoint, gameUppermostPoint, gameWidth } from '../../utils/constants';
 
 const Sky = () => {
   const skyStyle = {
@@ -8,10 +9,10 @@ const Sky = () => {
     <g id="sky">
       <rect
         style={skyStyle}
-        x="-400"
-        y="-700"
-        width="800"
-        height="800"
+        x={gameLeftmostXPoint}
+        y={gameUppermostPoint}
+        width={gameWidth}
+        height={gameHeight}
       />
     </g>
   );

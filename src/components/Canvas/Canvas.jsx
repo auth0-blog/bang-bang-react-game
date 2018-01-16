@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { gameHeight, gameLeftmostXPoint, gameUppermostPoint, gameWidth } from '../../utils/constants';
 
 const Canvas = (props) => {
-  const viewBox = '-400, -700, 800, 800';
+  const viewBox = [gameLeftmostXPoint, gameUppermostPoint, gameWidth, gameHeight];
   const style = {
     width: '400px',
     height: '400px',

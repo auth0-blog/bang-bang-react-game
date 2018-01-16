@@ -86,7 +86,7 @@ class App extends Component {
             />
           ))}
           <Cannon rotation={this.props.angle} />
-          <VisualClues visible={showVisualClues} position={this.props.canvasMousePosition} />
+          <VisualClues visible={showVisualClues} position={this.canvasMousePosition} />
           {this.props.lives.map(position => (
             <Heart
               xAxis={heartInitialAxisX - (position * heartWidth)}
@@ -117,7 +117,6 @@ App.propTypes = {
   gameStarted: PropTypes.bool.isRequired,
   lastDiscCreatedAt: PropTypes.instanceOf(Date).isRequired,
   lives: PropTypes.arrayOf(PropTypes.number).isRequired,
-  canvasMousePosition: PropTypes.instanceOf(Position).isRequired,
   moveObjects: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
