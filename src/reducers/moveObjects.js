@@ -22,7 +22,7 @@ function moveObjects(state, action) {
   cannonBalls = cannonBalls.filter(cannonBall => (cannonBallsDestroyed.indexOf(cannonBall.id)));
   flyingDiscs = flyingDiscs.filter(flyingDisc => (flyingDiscsDestroyed.indexOf(flyingDisc.id)));
 
-  const gameStarted = lifes.length >= 0;
+  const gameStarted = lifes.length > 0;
   if (!gameStarted) {
     flyingDiscs = [];
     cannonBalls = [];
