@@ -1,6 +1,5 @@
-import { SHOOT, MOVE_MOUSE, CREATE_AND_MOVE, START_GAME, MOVE_OBJECTS } from '../actions';
+import { SHOOT, CREATE_AND_MOVE, START_GAME, MOVE_OBJECTS } from '../actions';
 import Position from '../utils/Position';
-import trackMouse from './trackMouse';
 import shoot from './shoot';
 import moveObjects from './moveObjects';
 import createAndMove from './createAndMove';
@@ -20,12 +19,10 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SHOOT:
       return shoot(state, action);
-    case MOVE_MOUSE:
-      return trackMouse(state, action);
     case MOVE_OBJECTS:
-      return moveObjects(state);
+      return moveObjects(state, action);
     case CREATE_AND_MOVE:
-      return createAndMove(state);
+      return createAndMove(state, action);
     case START_GAME:
       return startGame(state);
     default:

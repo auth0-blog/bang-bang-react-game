@@ -1,5 +1,4 @@
 export const SHOOT = 'SHOOT';
-export const MOVE_MOUSE = 'MOVE_MOUSE';
 export const MOVE_OBJECTS = 'MOVE_OBJECTS';
 export const CREATE_AND_MOVE = 'CREATE_AND_MOVE';
 export const START_GAME = 'START_GAME';
@@ -9,17 +8,14 @@ export const shoot = angle => ({
   angle,
 });
 
-export const moveMouse = position => ({
-  type: MOVE_MOUSE,
-  position,
-});
-
-export const createAndMove = () => ({
+export const createAndMove = mousePosition => ({
   type: CREATE_AND_MOVE,
+  mousePosition,
 });
 
-export const moveObjects = () => ({
+export const moveObjects = mousePosition => ({
   type: MOVE_OBJECTS,
+  mousePosition,
 });
 
 export const startGame = () => ({

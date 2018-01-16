@@ -26,9 +26,9 @@ class App extends Component {
 
       const deltaDiscCreation = (new Date()).getTime() - self.props.lastDiscCreatedAt;
       if (deltaDiscCreation > 1000) {
-        self.props.createAndMove();
+        self.props.createAndMove(self.mousePosition);
       } else {
-        self.props.moveObjects();
+        self.props.moveObjects(self.mousePosition);
       }
     }, 10);
     document.onkeypress = (event) => {
@@ -40,7 +40,8 @@ class App extends Component {
 
   trackMouse(event) {
     const mousePosition = getCanvasPosition('my-super-canvas', event);
-    this.props.moveMouse(mousePosition);
+    // am I cheating?
+    this.mousePosition = mousePosition;
   }
 
   shootCannonBall() {
@@ -111,7 +112,6 @@ App.propTypes = {
   lifes: PropTypes.arrayOf(PropTypes.number).isRequired,
   mousePosition: PropTypes.instanceOf(Position).isRequired,
   moveObjects: PropTypes.func.isRequired,
-  moveMouse: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };

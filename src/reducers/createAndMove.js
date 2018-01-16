@@ -8,7 +8,7 @@ const predefinedPositions = [
   300,
 ];
 
-function createAndMove(state) {
+function createAndMove(state, action) {
   const { flyingDiscs } = state;
   if (flyingDiscs.length === 4) return state;
   const id = (new Date()).getTime();
@@ -23,7 +23,7 @@ function createAndMove(state) {
     ...state,
     lastDiscCreatedAt: new Date(),
     flyingDiscs: [...flyingDiscs, newFlyingDisc],
-  });
+  }, action);
 }
 
 export default createAndMove;

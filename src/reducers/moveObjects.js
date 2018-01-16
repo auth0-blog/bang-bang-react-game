@@ -1,8 +1,9 @@
 import moveBalls from './moveBalls';
 import moveDiscs from './moveDiscs';
 import checkCollisions from '../utils/checkCollisions';
+import trackMouse from './trackMouse';
 
-function moveObjects(state) {
+function moveObjects(state, action) {
   let cannonBalls = moveBalls(state.cannonBalls);
   let flyingDiscs = moveDiscs(state.flyingDiscs);
 
@@ -19,19 +20,19 @@ function moveObjects(state) {
   cannonBalls = cannonBalls.filter(cannonBall => (cannonBallsDestroyed.indexOf(cannonBall.id)));
   flyingDiscs = flyingDiscs.filter(flyingDisc => (flyingDiscsDestroyed.indexOf(flyingDisc.id)));
 
-  const gameStarted = lifes.length > 0;
+  const gameStarted = lifes.length >= 0;
   if (!gameStarted) {
     flyingDiscs = [];
     cannonBalls = [];
   }
 
-  return {
+  return trackMouse({
     ...state,
     cannonBalls,
     flyingDiscs,
     gameStarted,
     lifes,
-  };
+  }, action);
 }
 
 export default moveObjects;
