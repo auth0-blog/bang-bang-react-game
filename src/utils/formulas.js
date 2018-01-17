@@ -55,6 +55,8 @@ const checkCollision = (rectA, rectB) => (
   rectA.y1 < rectB.y2 && rectA.y2 > rectB.y1
 );
 
+const now = () => ((new Date()).getTime());
+
 export {
   degreesToRadian,
   calculateNextposition,
@@ -63,4 +65,5 @@ export {
   calculateAngle,
   pathFromBezierCurve,
   checkCollision,
+  now,
 };

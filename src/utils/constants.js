@@ -15,7 +15,7 @@ export const flyingDiscsStarterPositions = [
 ];
 
 // discs will appear at this altitude (minus means up)
-export const flyingDiscsStarterAxisY = -700;
+export const flyingDiscsStarterAxisY = gameLowermostPoint - gameHeight;
 
 // discs will move down
 export const flyingDiscsMovementAngle = 180;
