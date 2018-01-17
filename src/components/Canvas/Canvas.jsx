@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gameHeight, gameLeftmostXPoint, gameUppermostPoint, gameWidth } from '../../utils/constants';
+import { gameHeight, gameUppermostPoint } from '../../utils/constants';
 
 const Canvas = (props) => {
-  const viewBox = [gameLeftmostXPoint, gameUppermostPoint, gameWidth, gameHeight];
+  const viewBox = [window.innerWidth / -2, gameUppermostPoint, window.innerWidth, gameHeight];
   const style = {
-    maxWidth: '400px',
-    height: 'auto',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: window.innerWidth,
+    height: window.innerHeight,
   };
   return (
     <svg
@@ -14,7 +17,7 @@ const Canvas = (props) => {
       className="bang-bang-canvas"
       viewBox={viewBox}
       style={style}
-      preserveAspectRatio="xMaxYMax meet"
+      preserveAspectRatio="xMaxYMax none"
       onMouseMove={props.trackMouse}
       onClick={props.mouseClicked}
     >

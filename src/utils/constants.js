@@ -40,3 +40,6 @@ export const maximumSimultaneousShots = 2; // 2 shots
 
 // the id of the space key (you can also shoot with space)
 export const spaceKeyId = 32;
+
+// very wide to provide as full screen feeling
+export const skyAndGroundWidth = 5000;
