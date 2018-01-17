@@ -4,19 +4,11 @@ import { gameHeight, gameUppermostPoint } from '../../utils/constants';
 
 const Canvas = (props) => {
   const viewBox = [window.innerWidth / -2, gameUppermostPoint, window.innerWidth, gameHeight];
-  const style = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
   return (
     <svg
       id="my-super-canvas"
       className="bang-bang-canvas"
       viewBox={viewBox}
-      style={style}
       preserveAspectRatio="xMaxYMax none"
       onMouseMove={props.trackMouse}
       onClick={props.mouseClicked}

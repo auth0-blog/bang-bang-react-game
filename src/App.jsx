@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
 import Cannon from './components/Cannon/Cannon';
-import { getCanvasPosition } from './utils/formulas';
+import { getCanvasPosition, updateCanvasSize } from './utils/formulas';
 import Sky from './components/Sky/Sky';
 import './App.css';
 import Position from './utils/Position';
@@ -47,10 +47,12 @@ class App extends Component {
         });
       }
     };
+    window.onresize = updateCanvasSize;
+    updateCanvasSize();
   }
 
   trackMouse(event) {
-    const canvasMousePosition = getCanvasPosition('my-super-canvas', event);
+    const canvasMousePosition = getCanvasPosition(event);
     // am I cheating?
     this.mousePosition = new Position(event.clientX, event.clientY);
     this.canvasMousePosition = canvasMousePosition;

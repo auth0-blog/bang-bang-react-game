@@ -4,17 +4,23 @@ const degreesToRadian = degrees => ((degrees * Math.PI) / 180);
 
 const radiansToDegrees = radians => ((radians * 180) / Math.PI);
 
-const getCanvasPosition = (canvasId, event) => {
+const getCanvasPosition = (event) => {
   // mouse position on auto-scaling canvas
   // https://stackoverflow.com/a/10298843/1232793
 
-  const svg = document.getElementById(canvasId);
+  const svg = document.getElementById('my-super-canvas');
   const point = svg.createSVGPoint();
 
   point.x = event.clientX;
   point.y = event.clientY;
   const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
   return new Position(x, y);
+};
+
+const updateCanvasSize = () => {
+  const cnv = document.getElementById('my-super-canvas');
+  cnv.style.width = window.innerWidth + 2 + 'px';
+  cnv.style.height = window.innerHeight + 2 + 'px';
 };
 
 // https://math.stackexchange.com/questions/714378/find-the-angle-that-creating-with-y-axis-in-degrees
@@ -66,4 +72,5 @@ export {
   pathFromBezierCurve,
   checkCollision,
   now,
+  updateCanvasSize,
 };
