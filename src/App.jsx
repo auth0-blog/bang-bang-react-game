@@ -24,6 +24,7 @@ class App extends Component {
     super(props);
     this.trackMouse = this.trackMouse.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.canvasMousePosition = new Position(0, 0);
   }
 
   componentDidMount() {
