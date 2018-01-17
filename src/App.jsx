@@ -18,6 +18,7 @@ import {
   intervalBetweenDiscCreation, intervalBetweenRefreshes,
   maximumSimultaneousShots, spaceKeyId,
 } from './utils/constants';
+import Title from './components/Title/Title';
 
 class App extends Component {
   constructor(props) {
@@ -96,7 +97,13 @@ class App extends Component {
             key={position}
           />
         ))}
-        {!this.props.gameStarted && <StartGame onClick={this.props.startGame} />}
+        {
+          !this.props.gameStarted &&
+          <g>
+            <Title />
+            <StartGame onClick={this.props.startGame} />
+          </g>
+        }
       </Canvas>
     );
   }
