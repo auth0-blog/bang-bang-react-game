@@ -33,7 +33,7 @@ export const heartWidth = 70;
 export const intervalBetweenDiscCreation = 1000;
 
 // the screen will refresh every 10 ms
-export const intervelBetweenRefreshes = 10;
+export const intervalBetweenRefreshes = 10;
 
 // there can be only 2 cannon balls simultaneously
 export const maximumSimultaneousShots = 2; // 2 shots

@@ -15,7 +15,7 @@ import StartGame from './components/StartGame/StartGame';
 import {
   heartAxisY,
   heartInitialAxisX, heartWidth,
-  intervalBetweenDiscCreation, intervelBetweenRefreshes,
+  intervalBetweenDiscCreation, intervalBetweenRefreshes,
   maximumSimultaneousShots, spaceKeyId,
 } from './utils/constants';
 
@@ -38,7 +38,7 @@ class App extends Component {
       } else {
         self.props.moveObjects(self.canvasMousePosition);
       }
-    }, intervelBetweenRefreshes);
+    }, intervalBetweenRefreshes);
     document.onkeypress = (event) => {
       if (event.keyCode === spaceKeyId || event.charCode === spaceKeyId) {
         self.shootCannonBall({
