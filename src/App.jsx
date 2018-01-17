@@ -67,37 +67,35 @@ class App extends Component {
   render() {
     const showVisualClues = false;
     return (
-      <div>
-        <Canvas
-          trackMouse={event => (this.trackMouse(event))}
-          mouseClicked={event => (this.shootCannonBall(event))}
-        >
-          <Sky />
-          <Ground />
-          {this.props.flyingDiscs.map(flyingDisc => (
-            <FlyingDisc
-              key={flyingDisc.id}
-              position={flyingDisc.position}
-            />
-          ))}
-          {this.props.cannonBalls.map(cannonBall => (
-            <CannonBall
-              key={cannonBall.id}
-              position={cannonBall.position}
-            />
-          ))}
-          <Cannon rotation={this.props.angle} />
-          <VisualClues visible={showVisualClues} position={this.canvasMousePosition} />
-          {this.props.lives.map(position => (
-            <Heart
-              xAxis={heartInitialAxisX - (position * heartWidth)}
-              yAxis={heartAxisY}
-              key={position}
-            />
-          ))}
-          {!this.props.gameStarted && <StartGame onClick={this.props.startGame} />}
-        </Canvas>
-      </div>
+      <Canvas
+        trackMouse={event => (this.trackMouse(event))}
+        mouseClicked={event => (this.shootCannonBall(event))}
+      >
+        <Sky />
+        <Ground />
+        {this.props.flyingDiscs.map(flyingDisc => (
+          <FlyingDisc
+            key={flyingDisc.id}
+            position={flyingDisc.position}
+          />
+        ))}
+        {this.props.cannonBalls.map(cannonBall => (
+          <CannonBall
+            key={cannonBall.id}
+            position={cannonBall.position}
+          />
+        ))}
+        <Cannon rotation={this.props.angle} />
+        <VisualClues visible={showVisualClues} position={this.canvasMousePosition} />
+        {this.props.lives.map(position => (
+          <Heart
+            xAxis={heartInitialAxisX - (position * heartWidth)}
+            yAxis={heartAxisY}
+            key={position}
+          />
+        ))}
+        {!this.props.gameStarted && <StartGame onClick={this.props.startGame} />}
+      </Canvas>
     );
   }
 }
