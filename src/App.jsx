@@ -20,6 +20,7 @@ import {
 } from './utils/constants';
 import Title from './components/Title/Title';
 import CurrentScore from './components/CurrentScore/CurrentScore';
+import Ranking from './components/Ranking/Ranking';
 
 class App extends Component {
   constructor(props) {
@@ -102,6 +103,7 @@ class App extends Component {
           !this.props.gameState.started &&
           <g>
             <Title />
+            <Ranking />
             <StartGame onClick={this.props.startGame} />
           </g>
         }
