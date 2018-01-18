@@ -2,23 +2,16 @@ import React from 'react';
 import { pathFromBezierCurve } from '../../utils/formulas';
 
 const Title = () => {
-  const aliensLine = {
-    style: {
-      fontFamily: '"Joti One", cursive',
-      fontSize: 120,
-      fill: '#cbca62',
-    },
-  };
-
-  const goHomeLine = {
-    ...aliensLine,
-    y: -700, // 500 up
+  const textStyle = {
+    fontFamily: '"Joti One", cursive',
+    fontSize: 120,
+    fill: '#cbca62',
   };
 
   const aliensLineCurve = {
     initialAxis: {
       x: -190,
-      y: -775,
+      y: -900,
     },
     initialControlPoint: {
       x: 95,
@@ -38,7 +31,7 @@ const Title = () => {
     ...aliensLineCurve,
     initialAxis: {
       x: -250,
-      y: -630,
+      y: -730,
     },
     initialControlPoint: {
       x: 125,
@@ -66,12 +59,12 @@ const Title = () => {
           d={pathFromBezierCurve(goHomeLineCurve)}
         />
       </defs>
-      <text {...aliensLine}>
+      <text {...textStyle}>
         <textPath xlinkHref="#AliensPath">
           Aliens,
         </textPath>
       </text>
-      <text {...goHomeLine}>
+      <text {...textStyle}>
         <textPath xlinkHref="#GoHomePath">
           Go Home!
         </textPath>
