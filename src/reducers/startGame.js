@@ -1,6 +1,9 @@
 const startGame = state => ({
   ...state,
-  gameStarted: true,
+  gameState: {
+    ...state.gameState,
+    started: true,
+  },
 });
 
 export default startGame;

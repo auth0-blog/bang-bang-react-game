@@ -31,7 +31,7 @@ class App extends Component {
   componentDidMount() {
     const self = this;
     setInterval(() => {
-      if (!self.props.gameStarted) return;
+      if (!self.props.gameState.started) return;
 
       const deltaDiscCreation = (new Date()).getTime() - self.props.lastDiscCreatedAt;
       if (deltaDiscCreation > intervalBetweenDiscCreation) {
@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   shootCannonBall(event) {
-    if (!this.props.gameStarted) return;
+    if (!this.props.gameState.started) return;
     this.trackMouse(event);
     if (this.props.cannonBalls.length < maximumSimultaneousShots) {
       this.props.shoot(this.canvasMousePosition);
@@ -90,7 +90,7 @@ class App extends Component {
         ))}
         <Cannon rotation={this.props.angle} />
         <VisualClues visible={showVisualClues} position={this.canvasMousePosition} />
-        {this.props.lives.map(position => (
+        {this.props.gameState.lives.map(position => (
           <Heart
             xAxis={heartInitialAxisX - (position * heartWidth)}
             yAxis={heartAxisY}
@@ -98,7 +98,7 @@ class App extends Component {
           />
         ))}
         {
-          !this.props.gameStarted &&
+          !this.props.gameState.started &&
           <g>
             <Title />
             <StartGame onClick={this.props.startGame} />
@@ -122,9 +122,12 @@ App.propTypes = {
     angle: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
-  gameStarted: PropTypes.bool.isRequired,
   lastDiscCreatedAt: PropTypes.instanceOf(Date).isRequired,
-  lives: PropTypes.arrayOf(PropTypes.number).isRequired,
+  gameState: PropTypes.shape({
+    started: PropTypes.bool.isRequired,
+    kills: PropTypes.number.isRequired,
+    lives: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
   moveObjects: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,

@@ -10,7 +10,7 @@ function moveObjects(state, action) {
   ));
 
   const lostLife = state.flyingDiscs.length !== flyingDiscs.length;
-  const lives = [...state.lives];
+  const lives = [...state.gameState.lives];
   if (lostLife) {
     lives.pop();
   }
@@ -22,18 +22,23 @@ function moveObjects(state, action) {
   cannonBalls = cannonBalls.filter(cannonBall => (cannonBallsDestroyed.indexOf(cannonBall.id)));
   flyingDiscs = flyingDiscs.filter(flyingDisc => (flyingDiscsDestroyed.indexOf(flyingDisc.id)));
 
-  const gameStarted = lives.length > 0;
-  if (!gameStarted) {
+  const started = lives.length > 0;
+  if (!started) {
     flyingDiscs = [];
     cannonBalls = [];
   }
+
+  const gameState = {
+    ...state.gameState,
+    started,
+    lives,
+  };
 
   return trackMouse({
     ...state,
     cannonBalls,
     flyingDiscs,
-    gameStarted,
-    lives,
+    gameState,
   }, action);
 }
 

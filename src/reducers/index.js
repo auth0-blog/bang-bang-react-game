@@ -9,9 +9,12 @@ const initialState = {
   angle: 45,
   cannonBalls: [],
   flyingDiscs: [],
-  gameStarted: false,
+  gameState: {
+    started: false,
+    kills: 0,
+    lives: [0, 1, 2],
+  },
   lastDiscCreatedAt: new Date(),
-  lives: [0, 1, 2],
   mousePosition: new Position(0, 0),
 };
 
