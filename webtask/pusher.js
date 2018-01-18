@@ -19,7 +19,7 @@ server.post('/pusher/auth', (req, res) => {
     },
   };
 
-  const secrets = req.webtaskContext;
+  const secrets = req.webtaskContext.secrets;
 
   const pusher = new Pusher({
     appId: secrets.PUSHER_APP_ID,
