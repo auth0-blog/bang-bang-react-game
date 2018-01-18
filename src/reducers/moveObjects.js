@@ -18,6 +18,7 @@ function moveObjects(state, action) {
   const objectsDestroyed = checkCollisions(cannonBalls, flyingDiscs);
   const cannonBallsDestroyed = objectsDestroyed.map(object => (object.cannonBallId));
   const flyingDiscsDestroyed = objectsDestroyed.map(object => (object.flyingDiscId));
+  const kills = state.gameState.kills + flyingDiscsDestroyed.length;
 
   cannonBalls = cannonBalls.filter(cannonBall => (cannonBallsDestroyed.indexOf(cannonBall.id)));
   flyingDiscs = flyingDiscs.filter(flyingDisc => (flyingDiscsDestroyed.indexOf(flyingDisc.id)));
@@ -32,6 +33,7 @@ function moveObjects(state, action) {
     ...state.gameState,
     started,
     lives,
+    kills,
   };
 
   return trackMouse({

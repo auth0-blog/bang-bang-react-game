@@ -19,6 +19,7 @@ import {
   maximumSimultaneousShots, spaceKeyId,
 } from './utils/constants';
 import Title from './components/Title/Title';
+import CurrentScore from './components/CurrentScore/CurrentScore';
 
 class App extends Component {
   constructor(props) {
@@ -103,6 +104,10 @@ class App extends Component {
             <Title />
             <StartGame onClick={this.props.startGame} />
           </g>
+        }
+        {
+          this.props.gameState.started &&
+          <CurrentScore score={this.props.gameState.kills} />
         }
       </Canvas>
     );
