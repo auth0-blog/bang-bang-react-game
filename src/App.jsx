@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Pusher from 'pusher-js';
+
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
 import Cannon from './components/Cannon/Cannon';
@@ -32,6 +34,21 @@ class App extends Component {
 
   componentDidMount() {
     const self = this;
+
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher('e504736d8f802e6d36f1', {
+      authEndpoint: 'https://wt-krebs-bruno-sp-gmail-com-0.run.webtask.io/webtask/pusher/auth',
+      cluster: 'us2',
+      encrypted: true,
+    });
+
+    const channel = pusher.subscribe('presence-leaderboard');
+
+    channel.bind('pusher:subscription_succeeded', (members) => {
+      members.each(console.log);
+    });
+
     setInterval(() => {
       if (!self.props.gameState.started) return;
 

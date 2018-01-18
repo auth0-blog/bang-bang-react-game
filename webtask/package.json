@@ -1,0 +1,23 @@
+{
+  "name": "webtask",
+  "version": "1.0.0",
+  "description": "Webtask to provide identity information to Pusher.",
+  "main": "pusher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webtask",
+    "pusher",
+    "identity",
+    "real-time"
+  ],
+  "author": "Bruno Krebs",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pusher": "^1.5.1",
+    "webtask-tools": "^3.2.0"
+  }
+}
