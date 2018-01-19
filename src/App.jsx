@@ -86,6 +86,7 @@ class App extends Component {
         self.props.moveObjects(self.canvasMousePosition);
       }
     }, intervalBetweenRefreshes);
+
     document.onkeypress = (event) => {
       if (event.keyCode === spaceKeyId || event.charCode === spaceKeyId) {
         self.shootCannonBall({
@@ -94,6 +95,7 @@ class App extends Component {
         });
       }
     };
+
     window.onresize = updateCanvasSize;
     updateCanvasSize();
   }
