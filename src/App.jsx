@@ -64,7 +64,15 @@ class App extends Component {
       const channel = pusher.subscribe('presence-leaderboard');
 
       channel.bind('pusher:subscription_succeeded', (members) => {
-        members.each(console.log);
+        self.props.loadLeaderboard(members);
+      });
+
+      channel.bind('pusher_internal:member_added', (member) => {
+        self.props.addMember(member);
+      });
+
+      channel.bind('pusher_internal:member_removed', (member) => {
+        self.props.removeMember(member);
       });
     });
 
@@ -174,6 +182,9 @@ App.propTypes = {
   moveObjects: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  loadLeaderboard: PropTypes.func.isRequired,
+  addMember: PropTypes.func.isRequired,
+  removeMember: PropTypes.func.isRequired,
 };
 
 export default App;

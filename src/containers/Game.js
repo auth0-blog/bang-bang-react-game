@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { shoot, createAndMove, startGame, moveObjects } from '../actions';
+import { shoot, createAndMove, startGame, moveObjects, loadLeaderboard, addMember, removeMember } from '../actions';
 import App from '../App';
 
 const mapStateToProps = state => ({
@@ -22,6 +22,15 @@ const mapDispatchToProps = dispatch => ({
   },
   startGame: () => {
     dispatch(startGame());
+  },
+  loadLeaderboard: (leaderboard) => {
+    loadLeaderboard(leaderboard);
+  },
+  addMember: (member) => {
+    addMember(member);
+  },
+  removeMember: (member) => {
+    removeMember(member);
   },
 });
 
