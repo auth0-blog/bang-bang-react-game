@@ -11,7 +11,7 @@ const Title = () => {
   const aliensLineCurve = {
     initialAxis: {
       x: -190,
-      y: -900,
+      y: -950,
     },
     initialControlPoint: {
       x: 95,
@@ -31,7 +31,7 @@ const Title = () => {
     ...aliensLineCurve,
     initialAxis: {
       x: -250,
-      y: -730,
+      y: -780,
     },
     initialControlPoint: {
       x: 125,

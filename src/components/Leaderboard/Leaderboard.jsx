@@ -8,8 +8,16 @@ const Leaderboard = (props) => {
     stroke: 'black',
     strokeDasharray: '15',
   };
+
+  const leaderboardTitle = {
+    fontFamily: '"Joti One", cursive',
+    fontSize: 50,
+    fill: '#88da85',
+    cursor: 'default',
+  };
   return (
     <g>
+      <text filter="url(#big-shadow)" style={leaderboardTitle} x="-150" y="-620">Leaderboard</text>
       <rect style={style} x="-300" y="-600" width="600" height="300" />
       {
         props.leaderboard.map(member => (
