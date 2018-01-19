@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   flyingDiscs: state.flyingDiscs,
   lastDiscCreatedAt: state.lastDiscCreatedAt,
   gameState: state.gameState,
+  leaderboard: state.leaderboard,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,13 +25,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(startGame());
   },
   loadLeaderboard: (leaderboard) => {
-    loadLeaderboard(leaderboard);
+    dispatch(loadLeaderboard(leaderboard));
   },
   addMember: (member) => {
-    addMember(member);
+    dispatch(addMember(member));
   },
   removeMember: (member) => {
-    removeMember(member);
+    dispatch(removeMember(member));
   },
 });
 

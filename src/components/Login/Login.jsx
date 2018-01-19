@@ -11,7 +11,7 @@ const Login = (props) => {
     rx: 10, // border radius
     ry: 10, // border radius
     style: {
-      fill: 'blue',
+      fill: 'transparent',
       cursor: 'pointer',
     },
     onClick: props.authenticate,
@@ -20,10 +20,10 @@ const Login = (props) => {
   const text = {
     textAnchor: 'middle', // center
     x: 0, // center relative to X axis
-    y: -200, // 200 up
+    y: -400, // 200 up
     style: {
       fontFamily: '"Joti One", cursive',
-      fontSize: 60,
+      fontSize: 50,
       fill: '#e3e3e3',
       cursor: 'pointer',
     },
@@ -34,7 +34,7 @@ const Login = (props) => {
     <g filter="url(#big-shadow)">
       <rect {...button} />
       <text {...text}>
-        Tap To Start!
+        Login to participate!
       </text>
     </g>
   );

@@ -63,8 +63,8 @@ class App extends Component {
 
       const channel = pusher.subscribe('presence-leaderboard');
 
-      channel.bind('pusher:subscription_succeeded', (members) => {
-        self.props.loadLeaderboard(members);
+      channel.bind('pusher:subscription_succeeded', (leaderboard) => {
+        self.props.loadLeaderboard(leaderboard);
       });
 
       channel.bind('pusher_internal:member_added', (member) => {
@@ -149,7 +149,7 @@ class App extends Component {
           !this.props.gameState.started &&
           <g>
             <Title />
-            <Leaderboard authenticate={Auth0.signIn} />
+            <Leaderboard leaderboard={this.props.leaderboard} authenticate={Auth0.signIn} />
             <StartGame onClick={this.props.startGame} />
           </g>
         }
@@ -164,6 +164,12 @@ class App extends Component {
 
 App.propTypes = {
   angle: PropTypes.number.isRequired,
+  leaderboard: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    maxScore: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  })).isRequired,
   cannonBalls: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.instanceOf(Position).isRequired,
     angle: PropTypes.number.isRequired,

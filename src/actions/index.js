@@ -25,9 +25,9 @@ export const startGame = () => ({
   type: START_GAME,
 });
 
-export const loadLeaderboard = members => ({
+export const loadLeaderboard = leaderboard => ({
   type: LOAD_LEADERBOARD,
-  members,
+  leaderboard,
 });
 
 export const addMember = member => ({

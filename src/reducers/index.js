@@ -15,7 +15,7 @@ const initialState = {
   angle: 45,
   cannonBalls: [],
   flyingDiscs: [],
-  members: [],
+  leaderboard: [],
   gameState: {
     started: false,
     kills: 0,
@@ -44,10 +44,7 @@ function reducer(state = initialState, action) {
         member: action.member,
       });
     case LOAD_LEADERBOARD:
-      return loadLeaderboard({
-        ...state,
-        members: action.members,
-      });
+      return loadLeaderboard(state, action);
     case REMOVE_MEMBER:
       return removeMember({
         ...state,
