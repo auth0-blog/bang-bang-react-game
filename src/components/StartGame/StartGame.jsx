@@ -5,13 +5,13 @@ import {gameWidth} from "../../utils/constants";
 const StartGame = (props) => {
   const button = {
     x: gameWidth / -2, // half width
-    y: -500, // minus means up (above 0)
+    y: -300, // minus means up (above 0)
     width: gameWidth,
-    height: 400,
+    height: 200,
     rx: 10, // border radius
     ry: 10, // border radius
     style: {
-      fill: 'transparent',
+      fill: 'green',
       cursor: 'pointer',
     },
     onClick: props.onClick,
@@ -20,7 +20,7 @@ const StartGame = (props) => {
   const text = {
     textAnchor: 'middle', // center
     x: 0, // center relative to X axis
-    y: -200, // 200 up
+    y: -180, // 200 up
     style: {
       fontFamily: '"Joti One", cursive',
       fontSize: 60,

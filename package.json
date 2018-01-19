@@ -3,6 +3,7 @@
   "version": "0.1.5",
   "private": true,
   "dependencies": {
+    "auth0-web": "^1.4.2",
     "prop-types": "^15.6.0",
     "pusher-js": "^4.2.2",
     "react": "^16.2.0",
