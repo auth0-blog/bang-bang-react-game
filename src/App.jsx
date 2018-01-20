@@ -71,11 +71,11 @@ class App extends Component {
         self.props.authenticationEvent(true);
       });
 
-      channel.bind('pusher_internal:member_added', (member) => {
+      channel.bind('pusher:member_added', (member) => {
         self.props.addMember(member);
       });
 
-      channel.bind('pusher_internal:member_removed', (member) => {
+      channel.bind('pusher:member_removed', (member) => {
         self.props.removeMember(member);
       });
     });
