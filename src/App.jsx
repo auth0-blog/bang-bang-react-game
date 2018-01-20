@@ -26,11 +26,11 @@ import CurrentScore from './components/CurrentScore/CurrentScore';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 
 Auth0.configure({
-  domain: process.env.REACT_APP_AUTH0_DOMAIN,
-  clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
-  redirectUri: process.env.REACT_APP_AUTH0_REDIRECT_URI,
-  responseType: process.env.REACT_APP_AUTH0_RESPONSE_TYPE,
+  domain: 'bkrebs.auth0.com',
+  clientID: '6pjrHHSjF0ME4ShrOxN62ScKyMmXJud6',
+  audience: 'https://aliens-go-home.digituz.com.br',
+  redirectUri: 'http://localhost:3000/',
+  responseType: 'token id_token',
   scope: 'openid profile manage:points',
 });
 
