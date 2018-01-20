@@ -24,7 +24,7 @@ const Leaderboard = (props) => {
     overflowY: 'scroll',
   };
 
-  const leaderboard = props.leaderboard.filter((member, index) => (index < 2 ? member : null));
+  const leaderboard = props.leaderboard.filter((member, index) => (index < 3 ? member : null));
   return (
     <g>
       <text filter="url(#big-shadow)" style={leaderboardTitle} x="-150" y="-620">Leaderboard</text>

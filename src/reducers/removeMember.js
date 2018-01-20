@@ -1,9 +1,8 @@
 const removeMember = (state, action) => {
-  const members = [...state.members];
-  members.push(action.member);
+  const leaderboard = state.leaderboard.filter(member => (member.id !== action.member.id));
   return {
     ...state,
-    members,
+    leaderboard,
   };
 };
 

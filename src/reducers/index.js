@@ -43,17 +43,11 @@ function reducer(state = initialState, action) {
         ...initialState,
       });
     case ADD_MEMBER:
-      return addMember({
-        ...state,
-        member: action.member,
-      });
+      return addMember(state, action);
     case LOAD_LEADERBOARD:
       return loadLeaderboard(state, action);
     case REMOVE_MEMBER:
-      return removeMember({
-        ...state,
-        member: action.member,
-      });
+      return removeMember(state, action);
     default:
       return state;
   }

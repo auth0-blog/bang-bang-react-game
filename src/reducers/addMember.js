@@ -1,9 +1,12 @@
 const addMember = (state, action) => {
-  const members = [...state.members];
-  members.push(action.member);
+  const leaderboard = [...state.leaderboard];
+  leaderboard.push({
+    id: action.member.id,
+    ...action.member.info,
+  });
   return {
     ...state,
-    members,
+    leaderboard,
   };
 };
 
