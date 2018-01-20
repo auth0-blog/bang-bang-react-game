@@ -4,10 +4,10 @@ import { gameWidth } from '../../utils/constants';
 
 const Login = (props) => {
   const button = {
-    x: gameWidth / -2, // half width
-    y: -500, // minus means up (above 0)
-    width: gameWidth,
-    height: 400,
+    x: -300, // half width
+    y: -600, // minus means up (above 0)
+    width: 600,
+    height: 300,
     rx: 10, // border radius
     ry: 10, // border radius
     style: {
@@ -20,10 +20,10 @@ const Login = (props) => {
   const text = {
     textAnchor: 'middle', // center
     x: 0, // center relative to X axis
-    y: -400, // 200 up
+    y: -440, // 200 up
     style: {
       fontFamily: '"Joti One", cursive',
-      fontSize: 50,
+      fontSize: 45,
       fill: '#e3e3e3',
       cursor: 'pointer',
     },
