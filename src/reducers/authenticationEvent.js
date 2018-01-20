@@ -1,6 +1,6 @@
 const authenticationEvent = (state, action) => ({
   ...state,
-  authenticated: action.authenticated,
+  me: action.me,
 });
 
 export default authenticationEvent;

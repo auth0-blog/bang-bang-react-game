@@ -33,7 +33,7 @@ const Leaderboard = (props) => {
         <div>
           <table style={membersTableStyle}>
             {
-              props.authenticated && (
+              props.me !== null && (
                 <thead>
                   <tr>
                     <td style={{ width: '50px' }}>pos</td>
@@ -45,7 +45,7 @@ const Leaderboard = (props) => {
             }
             <tbody>
               {
-                props.authenticated && leaderboard.map((member, idx) => (
+                props.me !== null && leaderboard.map((member, idx) => (
                   <tr key={member.id}>
                     <td>{idx + 1}º</td>
                     <td>{member.maxScore}</td>
@@ -58,14 +58,19 @@ const Leaderboard = (props) => {
         </div>
       </foreignObject>
       {
-        !props.authenticated && <Login authenticate={props.authenticate} />
+        props.me === null && <Login authenticate={props.authenticate} />
       }
     </g>
   );
 };
 
 Leaderboard.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  me: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    maxScore: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  }),
   authenticate: PropTypes.func.isRequired,
   leaderboard: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,

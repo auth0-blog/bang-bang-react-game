@@ -18,9 +18,14 @@ const loadLeaderboard = (state, action) => {
     return prev.maxScore < next.maxScore ? -1 : 1;
   });
 
+  const me = {
+    id: action.leaderboard.me.id,
+    ...action.leaderboard.me.info,
+  };
   return {
     ...state,
     leaderboard,
+    me,
   };
 };
 

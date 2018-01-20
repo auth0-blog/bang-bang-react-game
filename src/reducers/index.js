@@ -14,7 +14,7 @@ import authenticationEvent from './authenticationEvent';
 
 const initialState = {
   angle: 45,
-  authenticated: false,
+  me: null,
   cannonBalls: [],
   flyingDiscs: [],
   leaderboard: [],

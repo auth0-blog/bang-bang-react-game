@@ -7,9 +7,9 @@ export const ADD_MEMBER = 'ADD_MEMBER';
 export const LOAD_LEADERBOARD = 'LOAD_LEADERBOARD';
 export const REMOVE_MEMBER = 'REMOVE_MEMBER';
 
-export const authenticationEvent = authenticated => ({
+export const authenticationEvent = me => ({
   type: AUTHENTICATION_EVENT,
-  authenticated,
+  me,
 });
 
 export const shoot = mousePosition => ({

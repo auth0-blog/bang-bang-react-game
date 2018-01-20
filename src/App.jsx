@@ -154,7 +154,7 @@ class App extends Component {
           <g>
             <Title />
             <Leaderboard
-              authenticated={this.props.authenticated}
+              me={this.props.me}
               leaderboard={this.props.leaderboard}
               authenticate={Auth0.signIn}
             />
@@ -172,7 +172,12 @@ class App extends Component {
 
 App.propTypes = {
   angle: PropTypes.number.isRequired,
-  authenticated: PropTypes.bool.isRequired,
+  me: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    maxScore: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  }),
   leaderboard: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     maxScore: PropTypes.number.isRequired,

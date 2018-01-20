@@ -7,7 +7,7 @@ import App from '../App';
 
 const mapStateToProps = state => ({
   angle: state.angle,
-  authenticated: state.authenticated,
+  me: state.me,
   cannonBalls: state.cannonBalls,
   flyingDiscs: state.flyingDiscs,
   lastDiscCreatedAt: state.lastDiscCreatedAt,
@@ -16,8 +16,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  authenticationEvent: (authenticated) => {
-    dispatch(authenticationEvent(authenticated));
+  authenticationEvent: (me) => {
+    dispatch(authenticationEvent(me));
   },
   createAndMove: (mousePosition) => {
     dispatch(createAndMove(mousePosition));
