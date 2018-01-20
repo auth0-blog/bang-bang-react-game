@@ -1,9 +1,13 @@
 import { connect } from 'react-redux';
-import { shoot, createAndMove, startGame, moveObjects, loadLeaderboard, addMember, removeMember } from '../actions';
+import {
+  shoot, createAndMove, startGame, moveObjects, loadLeaderboard, addMember, removeMember,
+  authenticationEvent,
+} from '../actions';
 import App from '../App';
 
 const mapStateToProps = state => ({
   angle: state.angle,
+  authenticated: state.authenticated,
   cannonBalls: state.cannonBalls,
   flyingDiscs: state.flyingDiscs,
   lastDiscCreatedAt: state.lastDiscCreatedAt,
@@ -12,6 +16,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  authenticationEvent: (authenticated) => {
+    dispatch(authenticationEvent(authenticated));
+  },
   createAndMove: (mousePosition) => {
     dispatch(createAndMove(mousePosition));
   },

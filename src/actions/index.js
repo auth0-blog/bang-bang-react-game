@@ -1,3 +1,4 @@
+export const AUTHENTICATION_EVENT = 'AUTHENTICATION_EVENT';
 export const SHOOT = 'SHOOT';
 export const MOVE_OBJECTS = 'MOVE_OBJECTS';
 export const CREATE_AND_MOVE = 'CREATE_AND_MOVE';
@@ -5,6 +6,11 @@ export const START_GAME = 'START_GAME';
 export const ADD_MEMBER = 'ADD_MEMBER';
 export const LOAD_LEADERBOARD = 'LOAD_LEADERBOARD';
 export const REMOVE_MEMBER = 'REMOVE_MEMBER';
+
+export const authenticationEvent = authenticated => ({
+  type: AUTHENTICATION_EVENT,
+  authenticated,
+});
 
 export const shoot = mousePosition => ({
   type: SHOOT,

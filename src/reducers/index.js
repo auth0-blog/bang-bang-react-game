@@ -1,6 +1,6 @@
 import {
   SHOOT, CREATE_AND_MOVE, START_GAME, MOVE_OBJECTS,
-  ADD_MEMBER, LOAD_LEADERBOARD, REMOVE_MEMBER,
+  ADD_MEMBER, LOAD_LEADERBOARD, REMOVE_MEMBER, AUTHENTICATION_EVENT,
 } from '../actions';
 import Position from '../utils/Position';
 import shoot from './shoot';
@@ -10,9 +10,11 @@ import startGame from './startGame';
 import addMember from './addMember';
 import loadLeaderboard from './loadLeaderboard';
 import removeMember from './removeMember';
+import authenticationEvent from './authenticationEvent';
 
 const initialState = {
   angle: 45,
+  authenticated: false,
   cannonBalls: [],
   flyingDiscs: [],
   leaderboard: [],
@@ -27,6 +29,8 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case AUTHENTICATION_EVENT:
+      return authenticationEvent(state, action);
     case SHOOT:
       return shoot(state, action);
     case MOVE_OBJECTS:

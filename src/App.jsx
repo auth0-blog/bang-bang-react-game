@@ -48,7 +48,10 @@ class App extends Component {
     Auth0.handleAuthCallback();
 
     Auth0.subscribe((auth) => {
-      if (!auth) return;
+      if (!auth) {
+        self.props.authenticationEvent(false);
+        return;
+      }
 
       Pusher.logToConsole = true;
 
@@ -65,6 +68,7 @@ class App extends Component {
 
       channel.bind('pusher:subscription_succeeded', (leaderboard) => {
         self.props.loadLeaderboard(leaderboard);
+        self.props.authenticationEvent(true);
       });
 
       channel.bind('pusher_internal:member_added', (member) => {
@@ -149,7 +153,11 @@ class App extends Component {
           !this.props.gameState.started &&
           <g>
             <Title />
-            <Leaderboard leaderboard={this.props.leaderboard} authenticate={Auth0.signIn} />
+            <Leaderboard
+              authenticated={this.props.authenticated}
+              leaderboard={this.props.leaderboard}
+              authenticate={Auth0.signIn}
+            />
             <StartGame onClick={this.props.startGame} />
           </g>
         }
@@ -164,6 +172,7 @@ class App extends Component {
 
 App.propTypes = {
   angle: PropTypes.number.isRequired,
+  authenticated: PropTypes.bool.isRequired,
   leaderboard: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     maxScore: PropTypes.number.isRequired,
@@ -187,6 +196,7 @@ App.propTypes = {
     kills: PropTypes.number.isRequired,
     lives: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
+  authenticationEvent: PropTypes.func.isRequired,
   moveObjects: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
