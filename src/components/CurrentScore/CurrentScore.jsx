@@ -5,7 +5,7 @@ const CurrentScore = (props) => {
   const scoreStyle = {
     fontFamily: '"Joti One", cursive',
     fontSize: 80,
-    fill: '#d62d0e',
+    fill: '#d6d33e',
   };
 
   return (
