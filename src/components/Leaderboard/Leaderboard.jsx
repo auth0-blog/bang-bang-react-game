@@ -19,6 +19,7 @@ const Leaderboard = (props) => {
   const membersTableStyle = {
     fontFamily: '"Joti One", cursive',
     fontSize: 35,
+    color: '#fcb3a4',
     width: '100%',
     textAlign: 'center',
     overflowY: 'scroll',
@@ -27,17 +28,17 @@ const Leaderboard = (props) => {
   const leaderboard = props.leaderboard.filter((member, index) => (index < 3 ? member : null));
   return (
     <g>
-      <text filter="url(#big-shadow)" style={leaderboardTitle} x="-150" y="-620">Leaderboard</text>
+      <text filter="url(#big-shadow)" style={leaderboardTitle} x="-150" y="-630">Leaderboard</text>
       <rect style={style} x="-300" y="-600" width="600" height="300" />
-      <foreignObject x="-280" y="-580" width="560" height="200">
+      <foreignObject x="-260" y="-570" width="560" height="200" filter="url(#shadow)">
         <div>
           <table style={membersTableStyle}>
             {
               props.me !== null && (
                 <thead>
                   <tr>
-                    <td style={{ width: '50px' }}>pos</td>
-                    <td style={{ width: '50px' }}>kills</td>
+                    <td style={{ width: '60px' }}>pos</td>
+                    <td style={{ width: '60px' }}>kills</td>
                     <td style={{ width: '200px' }}>name</td>
                   </tr>
                 </thead>
