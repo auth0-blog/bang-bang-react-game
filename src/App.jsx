@@ -49,7 +49,7 @@ class App extends Component {
 
     Auth0.subscribe((auth) => {
       if (!auth) {
-        self.props.authenticationEvent(false);
+        self.props.authenticationEvent(null);
         return;
       }
 
@@ -68,7 +68,6 @@ class App extends Component {
 
       channel.bind('pusher:subscription_succeeded', (leaderboard) => {
         self.props.loadLeaderboard(leaderboard);
-        self.props.authenticationEvent(true);
       });
 
       channel.bind('pusher:member_added', (member) => {
