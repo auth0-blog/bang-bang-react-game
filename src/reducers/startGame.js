@@ -1,7 +1,7 @@
-const startGame = state => ({
+const startGame = (state, initialState) => ({
   ...state,
   gameState: {
-    ...state.gameState,
+    ...initialState.gameState,
     started: true,
   },
 });

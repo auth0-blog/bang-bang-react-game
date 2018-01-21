@@ -38,7 +38,7 @@ function reducer(state = initialState, action) {
     case CREATE_AND_MOVE:
       return createAndMove(state, action);
     case START_GAME:
-      return startGame(state);
+      return startGame(state, initialState);
     case ADD_MEMBER:
       return addMember(state, action);
     case LOAD_LEADERBOARD:
