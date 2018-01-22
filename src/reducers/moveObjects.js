@@ -10,7 +10,7 @@ function moveObjects(state, action) {
   ));
 
   const lostLife = state.flyingDiscs.length !== flyingDiscs.length;
-  const lives = [...state.gameState.lives];
+  let lives = [...state.gameState.lives];
   if (lostLife) {
     lives.pop();
   }
@@ -27,6 +27,7 @@ function moveObjects(state, action) {
   if (!started) {
     flyingDiscs = [];
     cannonBalls = [];
+    lives = [0, 1, 2];
   }
 
   const gameState = {

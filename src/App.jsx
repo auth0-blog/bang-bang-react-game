@@ -103,6 +103,12 @@ class App extends Component {
     updateCanvasSize();
   }
 
+  componentWillReceiveProps(nextProps) {
+    const gameOver = !nextProps.gameState.started && this.props.gameState.started;
+    if (!gameOver) return;
+    // TODO update user maxScore (if needed)
+  }
+
   trackMouse(event) {
     const canvasMousePosition = getCanvasPosition(event);
     // am I cheating?
@@ -160,10 +166,7 @@ class App extends Component {
             <StartGame onClick={this.props.startGame} />
           </g>
         }
-        {
-          this.props.gameState.started &&
-          <CurrentScore score={this.props.gameState.kills} />
-        }
+        <CurrentScore score={this.props.gameState.kills} />
       </Canvas>
     );
   }
