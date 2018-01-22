@@ -1,6 +1,7 @@
 import {
   SHOOT, CREATE_AND_MOVE, START_GAME, MOVE_OBJECTS,
   ADD_MEMBER, LOAD_LEADERBOARD, REMOVE_MEMBER, AUTHENTICATION_EVENT,
+  NEW_MAX_SCORE,
 } from '../actions';
 import Position from '../utils/Position';
 import shoot from './shoot';
@@ -11,6 +12,7 @@ import addMember from './addMember';
 import loadLeaderboard from './loadLeaderboard';
 import removeMember from './removeMember';
 import authenticationEvent from './authenticationEvent';
+import newMaxScore from './newMaxScore';
 
 const initialState = {
   angle: 45,
@@ -43,6 +45,8 @@ function reducer(state = initialState, action) {
       return addMember(state, action);
     case LOAD_LEADERBOARD:
       return loadLeaderboard(state, action);
+    case NEW_MAX_SCORE:
+      return newMaxScore(state, action);
     case REMOVE_MEMBER:
       return removeMember(state, action);
     default:

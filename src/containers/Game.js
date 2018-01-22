@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
   shoot, createAndMove, startGame, moveObjects, loadLeaderboard, addMember, removeMember,
-  authenticationEvent,
+  authenticationEvent, newMaxScore,
 } from '../actions';
 import App from '../App';
 
@@ -39,6 +39,9 @@ const mapDispatchToProps = dispatch => ({
   },
   removeMember: (member) => {
     dispatch(removeMember(member));
+  },
+  newMaxScore: (maxScore) => {
+    dispatch(newMaxScore(maxScore));
   },
 });
 

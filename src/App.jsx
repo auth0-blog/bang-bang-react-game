@@ -40,6 +40,7 @@ class App extends Component {
     this.trackMouse = this.trackMouse.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.canvasMousePosition = new Position(0, 0);
+    this.channel = null;
   }
 
   componentDidMount() {
@@ -64,18 +65,22 @@ class App extends Component {
         },
       });
 
-      const channel = pusher.subscribe('presence-leaderboard');
+      this.channel = pusher.subscribe('presence-leaderboard');
 
-      channel.bind('pusher:subscription_succeeded', (leaderboard) => {
+      this.channel.bind('pusher:subscription_succeeded', (leaderboard) => {
         self.props.loadLeaderboard(leaderboard);
       });
 
-      channel.bind('pusher:member_added', (member) => {
+      this.channel.bind('pusher:member_added', (member) => {
         self.props.addMember(member);
       });
 
-      channel.bind('pusher:member_removed', (member) => {
+      this.channel.bind('pusher:member_removed', (member) => {
         self.props.removeMember(member);
+      });
+
+      this.channel.bind('client-new-max-score', (maxScore) => {
+        self.props.newMaxScore(maxScore);
       });
     });
 
@@ -106,7 +111,19 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     const gameOver = !nextProps.gameState.started && this.props.gameState.started;
     if (!gameOver) return;
-    // TODO update user maxScore (if needed)
+
+    // do we need to update the leaderboard?
+    if (nextProps.me.maxScore < nextProps.gameState.kills) {
+      this.channel.trigger('client-new-max-score', {
+        id: nextProps.me.id,
+        maxScore: nextProps.gameState.kills,
+      });
+
+      this.props.newMaxScore({
+        id: nextProps.me.id,
+        maxScore: nextProps.gameState.kills,
+      });
+    }
   }
 
   trackMouse(event) {
@@ -210,6 +227,7 @@ App.propTypes = {
   loadLeaderboard: PropTypes.func.isRequired,
   addMember: PropTypes.func.isRequired,
   removeMember: PropTypes.func.isRequired,
+  newMaxScore: PropTypes.func.isRequired,
 };
 
 export default App;

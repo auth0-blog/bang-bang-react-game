@@ -1,3 +1,5 @@
+import { sortLeaderboard } from '../utils/formulas';
+
 const loadLeaderboard = (state, action) => {
   const { members } = action.leaderboard;
   const membersIds = Object.keys(members);
@@ -11,12 +13,7 @@ const loadLeaderboard = (state, action) => {
     });
   });
 
-  leaderboard.sort((prev, next) => {
-    if (prev.maxScore === next.maxScore) {
-      return prev.name <= next.name ? -1 : 1;
-    }
-    return prev.maxScore < next.maxScore ? -1 : 1;
-  });
+  sortLeaderboard(leaderboard);
 
   const me = {
     id: action.leaderboard.me.id,

@@ -5,6 +5,7 @@ export const CREATE_AND_MOVE = 'CREATE_AND_MOVE';
 export const START_GAME = 'START_GAME';
 export const ADD_MEMBER = 'ADD_MEMBER';
 export const LOAD_LEADERBOARD = 'LOAD_LEADERBOARD';
+export const NEW_MAX_SCORE = 'NEW_MAX_SCORE';
 export const REMOVE_MEMBER = 'REMOVE_MEMBER';
 
 export const authenticationEvent = me => ({
@@ -44,4 +45,9 @@ export const addMember = member => ({
 export const removeMember = member => ({
   type: REMOVE_MEMBER,
   member,
+});
+
+export const newMaxScore = maxScore => ({
+  type: NEW_MAX_SCORE,
+  maxScore,
 });

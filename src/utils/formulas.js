@@ -63,6 +63,15 @@ const checkCollision = (rectA, rectB) => (
 
 const now = () => ((new Date()).getTime());
 
+const sortLeaderboard = (leaderboard) => {
+  leaderboard.sort((prev, next) => {
+    if (prev.maxScore === next.maxScore) {
+      return prev.name <= next.name ? 1 : -1;
+    }
+    return prev.maxScore < next.maxScore ? 1 : -1;
+  });
+};
+
 export {
   degreesToRadian,
   calculateNextposition,
@@ -73,4 +82,5 @@ export {
   checkCollision,
   now,
   updateCanvasSize,
+  sortLeaderboard,
 };
