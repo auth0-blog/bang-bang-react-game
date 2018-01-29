@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {pathFromBezierCurve} from "../../../utils/formulas";
+import { pathFromBezierCurve } from '../../../utils/formulas';
 
 const CannonPipe = (props) => {
   const cannonPipeStyle = {
