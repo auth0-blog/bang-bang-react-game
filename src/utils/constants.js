@@ -24,7 +24,7 @@ export const flyingDiscsMovementAngle = 180;
 export const heartAxisY = 40;
 
 // the rightmost heart will appear in this position in the X axis
-export const heartInitialAxisX = -210;
+export const heartInitialAxisX = -140;
 
 // this is the width of a heart;
 export const heartWidth = 70;

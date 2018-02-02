@@ -27,7 +27,7 @@ function moveObjects(state, action) {
   if (!started) {
     flyingDiscs = [];
     cannonBalls = [];
-    lives = [0, 1, 2];
+    lives = [0, 1, 2, 3];
   }
 
   const gameState = {

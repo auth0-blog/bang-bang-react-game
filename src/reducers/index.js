@@ -23,7 +23,7 @@ const initialState = {
   gameState: {
     started: false,
     kills: 0,
-    lives: [0, 1, 2],
+    lives: [0, 1, 2, 3],
   },
   lastDiscCreatedAt: new Date(),
   mousePosition: new Position(0, 0),
