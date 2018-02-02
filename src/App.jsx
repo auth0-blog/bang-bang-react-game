@@ -113,17 +113,18 @@ class App extends Component {
     if (!gameOver) return;
 
     // do we need to update the leaderboard?
-    if (nextProps.me.maxScore < nextProps.gameState.kills) {
-      this.channel.trigger('client-new-max-score', {
-        id: nextProps.me.id,
-        maxScore: nextProps.gameState.kills,
-      });
-
-      this.props.newMaxScore({
-        id: nextProps.me.id,
-        maxScore: nextProps.gameState.kills,
-      });
-    }
+    return;
+    // if (nextProps.me.maxScore < nextProps.gameState.kills) {
+    //   this.channel.trigger('client-new-max-score', {
+    //     id: nextProps.me.id,
+    //     maxScore: nextProps.gameState.kills,
+    //   });
+    //
+    //   this.props.newMaxScore({
+    //     id: nextProps.me.id,
+    //     maxScore: nextProps.gameState.kills,
+    //   });
+    // }
   }
 
   trackMouse(event) {
