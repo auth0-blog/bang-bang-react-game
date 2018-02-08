@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Pusher from 'pusher-js';
-import * as Auth0 from 'auth0-web';
+import ReactGA from 'react-ga';
+// import Pusher from 'pusher-js';
+// import * as Auth0 from 'auth0-web';
 
 import Canvas from './components/Canvas/Canvas';
 import Ground from './components/Ground/Ground';
@@ -23,16 +24,19 @@ import {
 } from './utils/constants';
 import Title from './components/Title/Title';
 import CurrentScore from './components/CurrentScore/CurrentScore';
-import Leaderboard from './components/Leaderboard/Leaderboard';
+// import Leaderboard from './components/Leaderboard/Leaderboard';
 
-Auth0.configure({
-  domain: 'bkrebs.auth0.com',
-  clientID: '6pjrHHSjF0ME4ShrOxN62ScKyMmXJud6',
-  audience: 'https://aliens-go-home.digituz.com.br',
-  redirectUri: 'http://localhost:3000/',
-  responseType: 'token id_token',
-  scope: 'openid profile manage:points',
-});
+// Auth0.configure({
+//   domain: 'bkrebs.auth0.com',
+//   clientID: '6pjrHHSjF0ME4ShrOxN62ScKyMmXJud6',
+//   audience: 'https://aliens-go-home.digituz.com.br',
+//   redirectUri: 'http://localhost:3000/',
+//   responseType: 'token id_token',
+//   scope: 'openid profile manage:points',
+// });
+
+
+ReactGA.initialize('UA-113618973-1');
 
 class App extends Component {
   constructor(props) {
@@ -46,43 +50,43 @@ class App extends Component {
   componentDidMount() {
     const self = this;
 
-    Auth0.handleAuthCallback();
-
-    Auth0.subscribe((auth) => {
-      if (!auth) {
-        self.props.authenticationEvent(null);
-        return;
-      }
-
-      Pusher.logToConsole = true;
-
-      const pusher = new Pusher('e504736d8f802e6d36f1', {
-        authEndpoint: 'https://wt-krebs-bruno-sp-gmail-com-0.run.webtask.io/webtask/pusher/auth',
-        cluster: 'us2',
-        encrypted: true,
-        auth: {
-          headers: { Authorization: `Bearer ${localStorage.getItem(Auth0.ACCESS_TOKEN)}` },
-        },
-      });
-
-      this.channel = pusher.subscribe('presence-leaderboard');
-
-      this.channel.bind('pusher:subscription_succeeded', (leaderboard) => {
-        self.props.loadLeaderboard(leaderboard);
-      });
-
-      this.channel.bind('pusher:member_added', (member) => {
-        self.props.addMember(member);
-      });
-
-      this.channel.bind('pusher:member_removed', (member) => {
-        self.props.removeMember(member);
-      });
-
-      this.channel.bind('client-new-max-score', (maxScore) => {
-        self.props.newMaxScore(maxScore);
-      });
-    });
+    // Auth0.handleAuthCallback();
+    //
+    // Auth0.subscribe((auth) => {
+    //   if (!auth) {
+    //     self.props.authenticationEvent(null);
+    //     return;
+    //   }
+    //
+    //   Pusher.logToConsole = true;
+    //
+    //   const pusher = new Pusher('e504736d8f802e6d36f1', {
+    //     authEndpoint: 'https://wt-krebs-bruno-sp-gmail-com-0.run.webtask.io/webtask/pusher/auth',
+    //     cluster: 'us2',
+    //     encrypted: true,
+    //     auth: {
+    //       headers: { Authorization: `Bearer ${localStorage.getItem(Auth0.ACCESS_TOKEN)}` },
+    //     },
+    //   });
+    //
+    //   this.channel = pusher.subscribe('presence-leaderboard');
+    //
+    //   this.channel.bind('pusher:subscription_succeeded', (leaderboard) => {
+    //     self.props.loadLeaderboard(leaderboard);
+    //   });
+    //
+    //   this.channel.bind('pusher:member_added', (member) => {
+    //     self.props.addMember(member);
+    //   });
+    //
+    //   this.channel.bind('pusher:member_removed', (member) => {
+    //     self.props.removeMember(member);
+    //   });
+    //
+    //   this.channel.bind('client-new-max-score', (maxScore) => {
+    //     self.props.newMaxScore(maxScore);
+    //   });
+    // });
 
     setInterval(() => {
       if (!self.props.gameState.started) return;
@@ -110,10 +114,25 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     const gameOver = !nextProps.gameState.started && this.props.gameState.started;
-    if (!gameOver) return;
+    const gameStarted = nextProps.gameState.started && !this.props.gameState.started;
 
-    // do we need to update the leaderboard?
-    return;
+    if (gameOver) {
+      ReactGA.pageview('Home');
+
+      ReactGA.event({
+        category: 'Game',
+        action: 'Over',
+        value: nextProps.gameState.kills,
+      });
+    } else if (gameStarted) {
+      ReactGA.pageview('Game');
+
+      ReactGA.event({
+        category: 'Game',
+        action: 'Started',
+      });
+    }
+
     // if (nextProps.me.maxScore < nextProps.gameState.kills) {
     //   this.channel.trigger('client-new-max-score', {
     //     id: nextProps.me.id,
@@ -176,11 +195,6 @@ class App extends Component {
           !this.props.gameState.started &&
           <g>
             <Title />
-            <Leaderboard
-              me={this.props.me}
-              leaderboard={this.props.leaderboard}
-              authenticate={Auth0.signIn}
-            />
             <StartGame onClick={this.props.startGame} />
           </g>
         }
