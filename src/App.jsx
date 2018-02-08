@@ -122,6 +122,7 @@ class App extends Component {
       ReactGA.event({
         category: 'Game',
         action: 'Over',
+        label: nextProps.gameState.kills + '',
         value: nextProps.gameState.kills,
       });
     } else if (gameStarted) {
