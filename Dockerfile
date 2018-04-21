@@ -9,8 +9,8 @@ ENV NPM_CONFIG_LOGLEVEL warn
 
 # Install and configure `serve`.
 RUN npm install -g serve
-CMD serve -s build
-EXPOSE 5000
+CMD serve -p 80 -s build
+EXPOSE 80
 
 # Install all dependencies of the current project.
 COPY package.json package.json
